@@ -28,17 +28,24 @@
                             </a>
                         </li>
                         <li>
+                            <a href="<?= base_url('owner/pegawai') ?>" class="waves-effect">
+                                <i class="dripicons-user-group"></i>
+                                <span> Pegawai</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="<?= base_url('owner/supplier') ?>" class="waves-effect">
                                 <i class="dripicons-store"></i>
                                 <span> Supplier</span>
                             </a>
                         </li>
                         <li>
-                            <a href="<?= base_url('owner/pegawai') ?>" class="waves-effect">
-                                <i class="dripicons-store"></i>
-                                <span> Pegawai</span>
+                            <a href="<?= base_url('owner') ?>" class="waves-effect">
+                                <i class="dripicons-archive"></i>
+                                <span> Produk</span>
                             </a>
                         </li>
+
                         <li class="menu-title">Report</li>
 
                         <li class="has_sub">
