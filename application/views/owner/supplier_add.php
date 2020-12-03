@@ -7,7 +7,7 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Supplier </h4>
+                            <h4 class="page-title m-0">Tambah Supplier </h4>
                         </div>
 
                         <!-- end col -->

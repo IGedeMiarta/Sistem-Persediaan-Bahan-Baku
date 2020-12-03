@@ -7,8 +7,7 @@ class Owner extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model('Supplier');
-        $this->load->model('Pegawai');
+        $this->load->model('Pemilik');
     }
 
     public function index()
@@ -22,7 +21,7 @@ class Owner extends CI_Controller
 
     public function supplier()
     {
-        $data['supplier'] = $this->Supplier->read('supplier')->result();
+        $data['supplier'] = $this->Pemilik->read('supplier')->result();
         $this->load->view('owner/default/header');
         $this->load->view('owner/default/sidebar');
         $this->load->view('owner/default/topbar');
@@ -64,7 +63,7 @@ class Owner extends CI_Controller
                 'alamat' => $alamat
             ];
 
-            $this->Supplier->insert($data, 'supplier');
+            $this->Pemilik->insert($data, 'supplier');
             redirect('owner/supplier');
         }
     }
@@ -72,7 +71,7 @@ class Owner extends CI_Controller
     public function supplier_edt($id_sup)
     {
         $where = array('id_sup' => $id_sup);
-        $data['supplier'] = $this->Supplier->edit($where, 'supplier')->result();
+        $data['supplier'] = $this->Pemilik->edit($where, 'supplier')->result();
         $this->load->view('owner/default/header');
         $this->load->view('owner/default/sidebar');
         $this->load->view('owner/default/topbar');
@@ -105,21 +104,21 @@ class Owner extends CI_Controller
                 'alamat' => $alamat
             ];
 
-            $this->Supplier->update($where, $data, 'supplier');
+            $this->Pemilik->update($where, $data, 'supplier');
             redirect('owner/supplier');
         }
     }
     public function supplier_del($id_sup)
     {
         $where = array('id_sup' => $id_sup);
-        $this->Supplier->delete($where, 'supplier');
+        $this->Pemilik->delete($where, 'supplier');
         redirect('owner/supplier');
     }
     // =====================================  end supplier =========================================================
 
     public function pegawai()
     {
-        $data['pegawai'] = $this->Pegawai->read('pegawai')->result();
+        $data['pegawai'] = $this->Pemilik->read('pegawai')->result();
         $this->load->view('owner/default/header');
         $this->load->view('owner/default/sidebar');
         $this->load->view('owner/default/topbar');
@@ -151,13 +150,13 @@ class Owner extends CI_Controller
             'desk' => $desk
         ];
 
-        $this->Pegawai->insert($data, 'pegawai');
+        $this->Pemilik->insert($data, 'pegawai');
         redirect('owner/pegawai');
     }
     public function pegawai_edt($id_pegawai)
     {
         $where = array('id_pegawai' => $id_pegawai);
-        $data['pegawai'] = $this->Supplier->edit($where, 'pegawai')->result();
+        $data['pegawai'] = $this->Pemilik->edit($where, 'pegawai')->result();
 
         $this->load->view('owner/default/header');
         $this->load->view('owner/default/sidebar');
@@ -185,14 +184,14 @@ class Owner extends CI_Controller
             'desk' => $desk
         ];
 
-        $this->Pegawai->update($where, $data, 'pegawai');
+        $this->Pemilik->update($where, $data, 'pegawai');
         redirect('owner/pegawai');
     }
 
     public function pegawai_del($id_pegawai)
     {
         $where = array('id_pegawai' => $id_pegawai);
-        $this->Pegawai->delete($where, 'pegawai');
+        $this->Pemilik->delete($where, 'pegawai');
         redirect('owner/pegawai');
     }
 }

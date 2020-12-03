@@ -1,6 +1,6 @@
 <?php
 
-class Pegawai extends CI_Model
+class Pemilik extends CI_Model
 {
     function read($table)
     {

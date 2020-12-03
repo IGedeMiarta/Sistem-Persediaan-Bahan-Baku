@@ -1,28 +1,29 @@
 <?php
 
-class Supplier extends CI_Model
+class Gudang_model extends CI_Model
 {
-    function read($table)
+
+    public function read($table)
     {
         return $this->db->get($table);
     }
 
-    function insert($data, $table)
+    public function insert($data, $table)
     {
         $this->db->insert($table, $data);
     }
-    function edit($where, $table)
+    public function edit($where, $table)
     {
         return $this->db->get_where($table, $where);
     }
 
-    function update($where, $data, $table)
+    public function update($where, $data, $table)
     {
         $this->db->where($where);
         $this->db->update($table, $data);
     }
 
-    function delete($where, $table)
+    public function delete($where, $table)
     {
         $this->db->delete($table, $where);
     }
