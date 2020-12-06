@@ -11,7 +11,7 @@
             <div class="left-side-logo d-block d-lg-none">
                 <div class="text-center">
 
-                    <a href="index.html" class="logo"><img src="assets/images/logo_dark.png" height="20" alt="logo"></a>
+                    <a href="index.html" class="logo"><img src="<?= base_url('vendor/admin/assets/images/logo_dark.png') ?>" height="20" alt="logo"></a>
                 </div>
             </div>
 
@@ -22,31 +22,41 @@
                         <li class="menu-title">Main</li>
 
                         <li>
-                            <a href="index.html" class="waves-effect">
+                            <a href="<?= base_url('kasir') ?>" class="waves-effect">
                                 <i class="dripicons-home"></i>
-                                <span> Dashboard <span class="badge badge-success badge-pill float-right">3</span></span>
+                                <span> Dashboard</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= base_url('kasir/sell') ?>" class="waves-effect">
+                                <i class="dripicons-home"></i>
+                                <span> Penjualan </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('kasir/product') ?>" class="waves-effect">
+                                <i class="dripicons-home"></i>
+                                <span> Produk </span>
+                            </a>
+                        </li>
+
                         <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> Tables </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> Material </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
-                                <li><a href="tables-basic.html">Basic Tables</a></li>
-                                <li><a href="tables-datatable.html">Data Table</a></li>
-                                <li><a href="tables-responsive.html">Responsive Table</a></li>
-                                <li><a href="tables-editable.html">Editable Table</a></li>
+                                <li><a href="<?= base_url('kasir/material_in') ?>">Material Masuk</a></li>
+                                <li><a href="<?= base_url('kasir/material') ?>">Stok Material</a></li>
                             </ul>
                         </li>
 
                         <li class="menu-title">Extra</li>
 
                         <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-location"></i><span> Maps </span> <span class="badge badge-danger badge-pill float-right">2</span></a>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> Laporan </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
-                                <li><a href="maps-google.html"> Google Map</a></li>
-                                <li><a href="maps-vector.html"> Vector Map</a></li>
+                                <li><a href="<?= base_url('ups') ?>">Laporan 1</a></li>
+                                <li><a href="<?= base_url('ups') ?>">Laporan 2</a></li>
                             </ul>
                         </li>
-
                     </ul>
                 </div>
                 <div class="clearfix"></div>

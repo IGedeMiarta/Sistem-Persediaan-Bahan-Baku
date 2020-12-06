@@ -50,8 +50,14 @@ class Gudang extends CI_Controller
             'tipe' => $tipe,
             'detail' => 'Gudang'
         ];
-
+        $data2 = [
+            'nama' => $nama,
+            'varian' => $varian,
+            'tipe' => $tipe,
+            'detail' => 'Kasir'
+        ];
         $this->gudang_model->insert($data, 'material');
+        $this->gudang_model->insert($data2, 'material');
         redirect('gudang/material');
     }
 
@@ -175,7 +181,8 @@ class Gudang extends CI_Controller
             'kd_material' => $material,
             'waktu' => $waktu,
             'jumlah' => $jumlah,
-            'detail' => 'Gudang'
+            'detail' => 'Gudang',
+            'status' => 1
         ];
         $this->gudang_model->insert($data, 'material_keluar');
         redirect('gudang/material_out');

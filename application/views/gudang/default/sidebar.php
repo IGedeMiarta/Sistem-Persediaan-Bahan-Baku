@@ -28,7 +28,7 @@
                             </a>
                         </li>
                         <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-location"></i><span> Material </span></a>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> Material </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a href="<?= base_url('gudang/material') ?>"> Stok Gudang</a></li>
                                 <li><a href="<?= base_url('gudang/material_in') ?>"> Material Masuk</a></li>
@@ -45,7 +45,7 @@
                         <li class="menu-title">Report</li>
 
                         <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-location"></i><span> Laporan </span></a>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> Laporan </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a href="<?= base_url('Ups') ?>"> Laporan Material</a></li>
                                 <li><a href="<?= base_url('Ups') ?>"> Laporan Stok </a></li>
