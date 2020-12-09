@@ -29,8 +29,7 @@
                     <img class="card-img-top img-fluid" src="<?= base_url('assets/image/product/es.jpg') ?>" alt="Card image cap">
                     <div class="card m-b-30 card-body text-center">
                         <h4 class="card-title font-16 mt-0"><?= $p->nama; ?></h4>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional
-                            content.</p>
+                        <p class="card-text"><?= $p->deskripsi; ?></p>
                         <h4>Rp.<?= $p->harga; ?></h4>
                         <a href="#" class="btn btn-primary waves-effect waves-light">Beli</a>
                     </div>

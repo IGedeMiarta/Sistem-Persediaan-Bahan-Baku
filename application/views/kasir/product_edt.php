@@ -18,7 +18,7 @@
             </div>
         </div>
 
-
+        <?php var_dump($prod) ?>
         <div class="card">
             <div class="card-body">
                 <?php foreach ($prod as $p) { ?>
@@ -31,10 +31,17 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-2 col-form-label">Deskripsi Produk</label>
+                            <div class="col-sm-10">
+                                <textarea type="text" class="form-control" id="des" name="des" placeholder="Deskripsi Produk"><?= $p->deskripsi ?></textarea>
+                                <?= form_error('name', '<small class="text-danger pl-3">', '</small>');  ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Material Digunakan</label>
                             <div class="col-sm-10">
                                 <select class="form-control" name="material">
-                                    <option selected value="<?= $p->mtrl ?>"><?= $p->nama_material ?></option>
+                                    <option selected value="<?= $p->kd_material ?>"><?= $p->nama_material ?></option>
                                     <?php foreach ($material as $m) { ?>
                                         <option value="<?= $m->kd_material ?>"><?= $m->nama ?></option>
                                     <?php } ?>

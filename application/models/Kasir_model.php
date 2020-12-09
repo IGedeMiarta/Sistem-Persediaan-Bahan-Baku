@@ -33,7 +33,7 @@ class Kasir_model extends CI_Model
     }
     function edit_product($kd_product)
     {
-        return $this->db->query("SELECT kd_produk,produk.material as mtrl,produk.nama AS nama_produk, material.nama AS nama_material,material_cost,harga FROM produk JOIN material ON produk.material=material.kd_material WHERE produk.material=$kd_product ")->result();
+        return $this->db->query("SELECT kd_produk,gambar,produk.nama AS nama_produk, deskripsi,material.kd_material, material_cost, harga,material.nama AS nama_material,material.varian, tipe FROM produk LEFT JOIN material ON produk.material=material.kd_material WHERE kd_produk=$kd_product")->result();
     }
     function material_in()
     {

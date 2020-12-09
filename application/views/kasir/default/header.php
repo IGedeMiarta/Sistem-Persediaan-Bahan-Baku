@@ -10,7 +10,7 @@
     <meta content="ThemeDesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="shortcut icon" href="<?= base_url('vendor/admin/assets/images/favicon.ico') ?>">
+    <link rel="shortcut icon" href="<?= base_url('assets/logo/logo.ico') ?>">
 
     <!-- morris css -->
     <link rel="stylesheet" href="<?= base_url('vendor/plugins/morris/morris.css') ?>">

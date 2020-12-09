@@ -32,6 +32,7 @@
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nama </th>
+                            <th scope="col">Deskripsi </th>
                             <th scope="col">Harga</th>
                             <th scope="col">Option</th>
                         </tr>
@@ -44,6 +45,7 @@
                             <tr>
                                 <th width="10px" scope="row"><?= $no++ ?></th>
                                 <td><?= $p->nama ?></td>
+                                <td><?= $p->deskripsi ?></td>
                                 <td><?= $p->harga ?></td>
 
                                 <td>

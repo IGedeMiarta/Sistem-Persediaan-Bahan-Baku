@@ -10,8 +10,7 @@
 
             <div class="left-side-logo d-block d-lg-none">
                 <div class="text-center">
-
-                    <a href="index.html" class="logo"><img src="<?= base_url('vendor/admin/assets/images/logo_dark.png') ?>" height="20" alt="logo"></a>
+                    <a href="<?= base_url('owner') ?>" class="logo"><img src="<?= base_url('assets/logo/logo-black.png') ?>" height="40" alt="logo"></a>
                 </div>
             </div>
 
@@ -49,12 +48,10 @@
                         <li class="menu-title">Report</li>
 
                         <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> Tables </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-print"></i><span> Laporan </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
-                                <li><a href="tables-basic.html">Basic Tables</a></li>
-                                <li><a href="tables-datatable.html">Data Table</a></li>
-                                <li><a href="tables-responsive.html">Responsive Table</a></li>
-                                <li><a href="tables-editable.html">Editable Table</a></li>
+                                <li><a href="<?= base_url('Ups') ?>"> Laporan Material</a></li>
+                                <li><a href="<?= base_url('Ups') ?>"> Laporan Stok </a></li>
                             </ul>
                         </li>
 

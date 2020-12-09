@@ -8,7 +8,7 @@
 
             <div class="topbar-left	d-none d-lg-block">
                 <div class="text-center">
-                    <a href="#" class="logo"><img src="<?= base_url('vendor/admin/assets/images/logo.png') ?>" height="22" alt="logo"></a>
+                    <a href="<?= base_url('owner') ?>" class="logo"><img src="<?= base_url('assets/logo/logo-white.png') ?>" height="42" alt="logo"></a>
                 </div>
             </div>
 
@@ -62,7 +62,7 @@
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
                             <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="dripicons-exit text-muted"></i> Logout</a>
+                            <a class="dropdown-item" href="<?= base_url('login/logout') ?>"><i class="dripicons-exit text-muted"></i> Logout</a>
                         </div>
                     </li>
 

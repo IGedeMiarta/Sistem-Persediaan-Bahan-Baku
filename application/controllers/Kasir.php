@@ -40,11 +40,13 @@ class Kasir extends CI_Controller
     public function product_add_act()
     {
         $nama = $this->input->post('name', true);
+        $deskripsi = $this->input->post('desk', true);
         $material = $this->input->post('material', true);
         $material_cost = $this->input->post('use', true);
         $harga = $this->input->post('harga', true);
         $data = [
             'nama' => $nama,
+            'deskripsi' => $deskripsi,
             'material' => $material,
             'material_cost' => $material_cost,
             'harga' => $harga
@@ -57,7 +59,9 @@ class Kasir extends CI_Controller
     {
 
         $data['prod'] = $this->kasir_model->edit_product($kd_product);
-        $data['material'] = $this->kasir_model->read('material');
+        $where = array('detail' => 'Kasir');
+        $data['material'] = $this->kasir_model->edit($where, 'material');
+
         $this->load->view('kasir/default/header');
         $this->load->view('kasir/default/sidebar');
         $this->load->view('kasir/default/topbar');
@@ -68,11 +72,13 @@ class Kasir extends CI_Controller
     {
         $whare = array('kd_produk' => $kd_product);
         $nama = $this->input->post('name', true);
+        $deskripsi = $this->input->post('des', true);
         $material = $this->input->post('material', true);
         $material_cost = $this->input->post('use', true);
         $harga = $this->input->post('harga', true);
         $data = [
             'nama' => $nama,
+            'deskripsi' => $deskripsi,
             'material' => $material,
             'material_cost' => $material_cost,
             'harga' => $harga

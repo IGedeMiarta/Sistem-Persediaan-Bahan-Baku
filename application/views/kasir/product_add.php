@@ -26,7 +26,12 @@
                         <label for="example-text-input" class="col-sm-2 col-form-label">Nama Produk</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="name" name="name" placeholder="Nama Produk" value="<?= set_value('name'); ?>">
-                            <?= form_error('name', '<small class="text-danger pl-3">', '</small>');  ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-sm-2 col-form-label">Deskripsi Produk</label>
+                        <div class="col-sm-10">
+                            <textarea type="text" class="form-control" id="desk" name="desk" placeholder="Deskripsi Produk" value="<?= set_value('deskipsi'); ?>"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -50,7 +55,7 @@
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">Harga</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="harga" name="harga" placeholder=" Harga Produk" value="<?= set_value('hp'); ?>">
+                            <input type="text" class="form-control" id="harga" name="harga" placeholder=" Harga Produk" value="<?= set_value('hp'); ?>">
                             <?= form_error('hp', '<small class="text-danger pl-3">', '</small>');  ?>
                         </div>
                     </div>
