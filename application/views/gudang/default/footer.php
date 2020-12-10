@@ -15,6 +15,7 @@
 
 <!-- jQuery  -->
 <script src="<?= base_url('vendor/admin/assets/js/jquery.min.js') ?>"></script>
+
 <script src="<?= base_url('vendor/admin/assets/js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?= base_url('vendor/admin/assets/js/modernizr.min.js') ?>"></script>
 <script src="<?= base_url('vendor/admin/assets/js/detect.js') ?>"></script>
@@ -26,14 +27,32 @@
 <script src="<?= base_url('vendor/admin/assets/js/jquery.scrollTo.min.js') ?>"></script>
 
 <!--Morris Chart-->
-<script src="<?= base_url('vendor/plugins/morris/morris.min.js') ?>"></script>
-<script src="<?= base_url('vendor/plugins/raphael/raphael.min.js') ?>"></script>
+<!-- <script src="<?= base_url('vendor/plugins/morris/morris.min.js') ?>"></script>
+<script src="<?= base_url('vendor/plugins/raphael/raphael.min.js') ?>"></script> -->
 
 <!-- dashboard js -->
 <script src="<?= base_url('vendor/admin/assets/pages/dashboard.int.js') ?>"></script>
 
 <!-- App js -->
 <script src="<?= base_url('vendor/admin/assets/js/app.js') ?>"></script>
+
+<script type="text/javascript">
+    function autofill() {
+        var material = $("#material").val();
+        $.ajax({
+            url: "<?= base_url('gudang/cari') ?>",
+            data: 'material=' + material,
+            success: function(data) {
+                var hasil = JSON.parse(data);
+
+                $.each(hasil, function(key, val) {
+                    document.getElementById('stok').value = val.stok;
+                });
+            }
+        });
+    }
+</script>
+
 
 </body>
 

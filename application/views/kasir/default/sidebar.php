@@ -27,13 +27,14 @@
                                 <span> Dashboard</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="<?= base_url('kasir/sell') ?>" class="waves-effect">
-                                <i class="dripicons-cart"></i>
-                                <span> Penjualan </span>
-                            </a>
-                        </li>
 
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-cart"></i><span> Penjualan </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="<?= base_url('kasir/sell') ?>">Penjualan</a></li>
+                                <li><a href="<?= base_url('ups') ?>">Data Transkasi</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="<?= base_url('kasir/product') ?>" class="waves-effect">
                                 <i class="dripicons-to-do"></i>
@@ -48,12 +49,12 @@
                                 <li><a href="<?= base_url('kasir/material') ?>">Stok Material</a></li>
                             </ul>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="<?= base_url('Ups') ?>" class="waves-effect">
                                 <i class="dripicons-media-loop"></i>
                                 <span> Retur</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="menu-title">Report</li>
 
                         <li class="has_sub">

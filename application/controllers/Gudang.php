@@ -33,6 +33,8 @@ class Gudang extends CI_Controller
         $data['varian'] = $this->gudang_model->material_enum('material', 'varian');
         $data['tipe'] = $this->gudang_model->material_enum('material', 'tipe');
         $data['detail'] = $this->gudang_model->material_enum('material', 'detail');
+
+
         $this->load->view('gudang/default/header');
         $this->load->view('gudang/default/sidebar');
         $this->load->view('gudang/default/topbar');
@@ -41,24 +43,40 @@ class Gudang extends CI_Controller
     }
     public function material_add_act()
     {
-        $nama = $this->input->post('name', true);
-        $varian = $this->input->post('varian', true);
-        $tipe = $this->input->post('tipe', true);
-        $data = [
-            'nama' => $nama,
-            'varian' => $varian,
-            'tipe' => $tipe,
-            'detail' => 'Gudang'
-        ];
-        $data2 = [
-            'nama' => $nama,
-            'varian' => $varian,
-            'tipe' => $tipe,
-            'detail' => 'Kasir'
-        ];
-        $this->gudang_model->insert($data, 'material');
-        $this->gudang_model->insert($data2, 'material');
-        redirect('gudang/material');
+        $this->form_validation->set_rules('name', 'name', 'trim|required|is_unique[material.nama]', [
+            'is_unique' => 'Material Sudah Terdaftar'
+        ]);
+        $data['material'] = $this->gudang_model->read('material')->result();
+        $data['varian'] = $this->gudang_model->material_enum('material', 'varian');
+        $data['tipe'] = $this->gudang_model->material_enum('material', 'tipe');
+        $data['detail'] = $this->gudang_model->material_enum('material', 'detail');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('gudang/default/header');
+            $this->load->view('gudang/default/sidebar');
+            $this->load->view('gudang/default/topbar');
+            $this->load->view('gudang/material_add', $data);
+            $this->load->view('gudang/default/footer');
+        } else {
+            $nama = $this->input->post('name', true);
+            $varian = $this->input->post('varian', true);
+            $tipe = $this->input->post('tipe', true);
+            $data = [
+                'nama' => $nama,
+                'varian' => $varian,
+                'tipe' => $tipe,
+                'detail' => 'Gudang'
+            ];
+            $data2 = [
+                'nama' => $nama,
+                'varian' => $varian,
+                'tipe' => $tipe,
+                'detail' => 'Kasir'
+            ];
+            $this->gudang_model->insert($data, 'material');
+            $this->gudang_model->insert($data2, 'material');
+            redirect('gudang/material');
+        }
     }
 
     public function material_edt($kd_material)
@@ -91,6 +109,13 @@ class Gudang extends CI_Controller
 
         $this->gudang_model->update($where, $data, 'material');
         redirect('gudang/material');
+    }
+
+    public function cari()
+    {
+        $material = $_GET['material'];
+        $cari = $this->gudang_model->stok($material);
+        echo json_encode($cari);
     }
 
 

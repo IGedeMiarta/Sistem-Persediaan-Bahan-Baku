@@ -35,12 +35,12 @@
                                 <li><a href="<?= base_url('gudang/material_out') ?>"> Material Keluar</a></li>
                             </ul>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="<?= base_url('Ups') ?>" class="waves-effect">
                                 <i class="dripicons-media-loop"></i>
                                 <span> Retur</span>
                             </a>
-                        </li>
+                        </li> -->
 
                         <li class="menu-title">Report</li>
 

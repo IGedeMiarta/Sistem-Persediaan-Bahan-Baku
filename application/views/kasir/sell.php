@@ -31,7 +31,7 @@
                         <h4 class="card-title font-16 mt-0"><?= $p->nama; ?></h4>
                         <p class="card-text"><?= $p->deskripsi; ?></p>
                         <h4>Rp.<?= $p->harga; ?></h4>
-                        <a href="#" class="btn btn-primary waves-effect waves-light">Beli</a>
+                        <a href="<?= base_url('kasir/sell_add/' . $p->kd_produk) ?>" class="btn btn-primary waves-effect waves-light">Beli</a>
                     </div>
                 </div>
             <?php } ?>

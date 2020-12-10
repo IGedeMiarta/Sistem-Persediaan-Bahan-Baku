@@ -51,4 +51,8 @@ class Kasir_model extends CI_Model
     {
         return $this->db->query("SELECT * FROM material WHERE material.nama LIKE '$nama' AND material.detail='Kasir'")->row_array();
     }
+    function penjualan()
+    {
+        return $this->db->query("SELECT * FROM penjualan JOIN produk ON penjualan.produk=produk.kd_produk")->result();
+    }
 }

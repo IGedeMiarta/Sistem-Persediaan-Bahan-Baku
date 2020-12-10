@@ -32,9 +32,33 @@
 <!-- dashboard js -->
 <script src="<?= base_url('vendor/admin/assets/pages/dashboard.int.js') ?>"></script>
 
+<!-- Bootstrap inputmask js -->
+<script src="<?= base_url('vendor/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js') ?>"></script>
+
 <!-- App js -->
 <script src="<?= base_url('vendor/admin/assets/js/app.js') ?>"></script>
 
+<!-- <script>
+    jQuery.browser = {};
+    (function() {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+</script> -->
+<script>
+    jQuery.browser = {};
+    $("perhitungan").keyup(function() {
+        var harga = parseInt($("#harga").val())
+        var bayar = parseInt($("#bayar").val())
+
+        var hasil = bayar - harga;
+        $("#kambali").attr("value", hasil);
+    });
+</script>
 </body>
 
 </html>

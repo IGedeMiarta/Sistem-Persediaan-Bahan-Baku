@@ -26,7 +26,7 @@
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">Nama Material</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="material">
+                            <select class="form-control" name="material" id="material" onchange="autofill()">
                                 <option selected>-- Pilih</option>
                                 <?php foreach ($material as $mtrl) { ?>
                                     <option value="<?= $mtrl->kd_material; ?>"><?= $mtrl->nama; ?></option>
@@ -35,9 +35,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="example-text-input" class="col-sm-2 col-form-label">Tersedia</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="stok" name="jumlah" placeholder="Material Tersedia / gram" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">Jumlah</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Jumlah Material Masuk / gram" value="<?= set_value('jumlah'); ?>">
+                            <input type="number" class="form-control" id="jumlah" name="jumlah" onkeyup="autofill()" placeholder="Jumlah Material Keluar / gram">
                         </div>
                     </div>
                     <div class="row">

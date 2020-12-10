@@ -144,13 +144,50 @@ class Kasir extends CI_Controller
     }
     public function sell()
     {
-        // $whare = array('detail' => 'Kasir');
-        // $data['material'] = $this->kasir_model->edit($whare, 'material');
+
         $data['produk'] = $this->kasir_model->read('produk');
         $this->load->view('kasir/default/header');
         $this->load->view('kasir/default/sidebar');
         $this->load->view('kasir/default/topbar');
         $this->load->view('kasir/sell', $data);
+        $this->load->view('kasir/default/footer');
+    }
+    public function sell_add($kd_produk)
+    {
+        $whare = array('kd_produk' => $kd_produk);
+        $data['produk'] = $this->kasir_model->edit($whare, 'produk');
+
+        $this->load->view('kasir/default/header');
+        $this->load->view('kasir/default/sidebar');
+        $this->load->view('kasir/default/topbar');
+        $this->load->view('kasir/pembelian', $data);
+        $this->load->view('kasir/default/footer');
+    }
+    public function sell_act()
+    {
+        $pembeli = $this->input->post('pembeli', true);
+        $produk = $this->input->post('name', true);
+        $bayar = $this->input->post('bayar', true);
+        $waktu = date("Y-m-d H:i:s");
+        $data = [
+            'produk' => $produk,
+            'pembeli' => $pembeli,
+            'waktu' => $waktu,
+            'bayar' => $bayar
+        ];
+
+        $this->kasir_model->insert($data, 'penjualan');
+        redirect('kasir/transaksi');
+    }
+
+    public function transaksi()
+    {
+
+        $data['sell'] = $this->kasir_model->penjualan();
+        $this->load->view('kasir/default/header');
+        $this->load->view('kasir/default/sidebar');
+        $this->load->view('kasir/default/topbar');
+        $this->load->view('kasir/transaksi', $data);
         $this->load->view('kasir/default/footer');
     }
 }
