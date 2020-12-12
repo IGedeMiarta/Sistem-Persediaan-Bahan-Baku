@@ -7,11 +7,16 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Stok Material</h4>
+                            <h4 class="page-title m-0">Data Transkaksi</h4>
                         </div>
                         <div class="col-md-4">
-                            <div class="float-right d-none d-md-block">
-
+                            <div class="float-right">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="<?= base_url('kasir') ?>">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Data Transaksi</li>
+                                    </ol>
+                                </nav>
                             </div>
                         </div>
                         <!-- end col -->

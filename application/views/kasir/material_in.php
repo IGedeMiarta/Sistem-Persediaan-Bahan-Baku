@@ -10,8 +10,13 @@
                             <h4 class="page-title m-0">Material Masuk</h4>
                         </div>
                         <div class="col-md-4">
-                            <div class="float-right d-none d-md-block">
-
+                            <div class="float-right">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="<?= base_url('kasir') ?>">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Stok Material</li>
+                                    </ol>
+                                </nav>
                             </div>
                         </div>
                         <!-- end col -->

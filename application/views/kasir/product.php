@@ -10,8 +10,13 @@
                             <h4 class="page-title m-0">Product</h4>
                         </div>
                         <div class="col-md-4">
-                            <div class="float-right d-none d-md-block">
-
+                            <div class="float-right">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="<?= base_url('kasir') ?>">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Produk</li>
+                                    </ol>
+                                </nav>
                             </div>
                         </div>
                         <!-- end col -->
@@ -45,7 +50,8 @@
                             <tr>
                                 <th width="10px" scope="row"><?= $no++ ?></th>
                                 <td><?= $p->nama ?></td>
-                                <td><?= $p->deskripsi ?></td>
+
+                                <td width="500px"><?= $p->deskripsi ?></td>
                                 <td><?= $p->harga ?></td>
 
                                 <td>

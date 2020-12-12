@@ -10,8 +10,13 @@
                             <h4 class="page-title m-0">Penjualan</h4>
                         </div>
                         <div class="col-md-4">
-                            <div class="float-right d-none d-md-block">
-
+                            <div class="float-right">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="<?= base_url('kasir') ?>">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Penjualan</li>
+                                    </ol>
+                                </nav>
                             </div>
                         </div>
                         <!-- end col -->
@@ -29,7 +34,10 @@
                     <img class="card-img-top img-fluid" src="<?= base_url('assets/image/product/es.jpg') ?>" alt="Card image cap">
                     <div class="card m-b-30 card-body text-center">
                         <h4 class="card-title font-16 mt-0"><?= $p->nama; ?></h4>
-                        <p class="card-text"><?= $p->deskripsi; ?></p>
+                        <?php
+                        $text = $p->deskripsi;
+                        ?>
+                        <p class="card-text"><?= substr($text, 0, 50) . '...' ?></p>
                         <h4>Rp.<?= $p->harga; ?></h4>
                         <a href="<?= base_url('kasir/sell_add/' . $p->kd_produk) ?>" class="btn btn-primary waves-effect waves-light">Beli</a>
                     </div>

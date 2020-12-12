@@ -9,7 +9,17 @@
                         <div class="col-md-8">
                             <h4 class="page-title m-0">Edit Produk</h4>
                         </div>
-
+                        <div class="col-md-4">
+                            <div class="float-right">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="<?= base_url('kasir') ?>">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="<?= base_url('kasir/product') ?>">Produk</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Edit Produk</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
                         <!-- end col -->
                     </div>
                     <!-- end row -->
@@ -18,7 +28,6 @@
             </div>
         </div>
 
-        <?php var_dump($prod) ?>
         <div class="card">
             <div class="card-body">
                 <?php foreach ($prod as $p) { ?>
