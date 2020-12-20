@@ -10,7 +10,6 @@
           <div class="img-holder">
               <div class="bg"></div>
               <div class="info-holder">
-
               </div>
           </div>
           <div class="form-holder">
@@ -25,7 +24,6 @@
                               <option selected>Pilih Jobdesk</option>
                               <option value="2">Kasir</option>
                               <option value="3">Gudang</option>
-                              <!-- <option value="1">Owner</option> -->
                           </select>
                           <input class="form-control" type="text" name="username" placeholder="Username" required>
                           <?= form_error('username', '<small class="text-danger pl-3">', '</small>');  ?>
@@ -36,7 +34,6 @@
                               <button id="submit" type="submit" class="ibtn">Register</button>
                           </div>
                       </form>
-
                   </div>
               </div>
           </div>

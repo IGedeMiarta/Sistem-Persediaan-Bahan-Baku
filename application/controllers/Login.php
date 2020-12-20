@@ -28,6 +28,7 @@ class Login extends CI_Controller
         $password = $this->input->post('password');
 
         $user = $this->db->get_where('user', ['username' => $username])->row_array();
+
         //jika user ada
         if ($user) {
             //cek password
@@ -37,6 +38,7 @@ class Login extends CI_Controller
 
                         'username' => $user['username'],
                         'role' => $user['role'],
+                        'pegawai' => $user['id_pegawai'],
                         'status' => 'login_admin'
                     ];
                     $this->session->set_userdata($data);
@@ -46,6 +48,7 @@ class Login extends CI_Controller
 
                         'username' => $user['username'],
                         'role' => $user['role'],
+                        'pegawai' => $user['id_pegawai'],
                         'status' => 'login_kasir'
                     ];
                     $this->session->set_userdata($data);
@@ -55,6 +58,7 @@ class Login extends CI_Controller
 
                         'username' => $user['username'],
                         'role' => $user['role'],
+                        'pegawai' => $user['id_pegawai'],
                         'status' => 'login_gudang'
                     ];
                     $this->session->set_userdata($data);

@@ -39,7 +39,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?= base_url('owner') ?>" class="waves-effect">
+                            <a href="<?= base_url('owner/produk') ?>" class="waves-effect">
                                 <i class="dripicons-archive"></i>
                                 <span> Produk</span>
                             </a>
@@ -50,7 +50,7 @@
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-print"></i><span> Laporan </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
-                                <li><a href="<?= base_url('Ups') ?>"> Laporan Material</a></li>
+                                <li><a href="<?= base_url('owner/lap_material') ?>"> Laporan Material</a></li>
                                 <li><a href="<?= base_url('Ups') ?>"> Laporan Stok </a></li>
                             </ul>
                         </li>

@@ -70,8 +70,8 @@
                             <label for="example-text-input" class="col-sm-2 col-form-label">Job Desk</label>
                             <div class="col-sm-10">
                                 <select class="form-control" name="desk">
-                                    <option selected value="<?= $pegawai->desk ?>"><?php
-                                                                                    if ($pegawai->desk == 1) {
+                                    <option selected value="<?= $pegawai->role ?>"><?php
+                                                                                    if ($pegawai->role == 2) {
                                                                                         echo "Bagian Kasir";
                                                                                     } else {
                                                                                         echo "Bagian Gudang";

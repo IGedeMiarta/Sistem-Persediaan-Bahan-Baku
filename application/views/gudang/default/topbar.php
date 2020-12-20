@@ -57,7 +57,7 @@
                     <li class="list-inline-item dropdown notification-list nav-user">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <img src="<?= base_url('vendor/admin/assets/images/users/avatar-6.jpg') ?>" alt="user" class="rounded-circle">
-                            <span class="d-none d-md-inline-block ml-1">David M. Bailey <i class="mdi mdi-chevron-down"></i> </span>
+                            <span class="d-none d-md-inline-block ml-1"><?= $user['nama'] ?> <i class="mdi mdi-chevron-down"></i> </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
                             <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>

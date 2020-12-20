@@ -1,7 +1,6 @@
 <div class="page-content-wrapper ">
 
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
@@ -57,8 +56,14 @@
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Bayar</label>
                             <div class="col-sm-10">
-                                <input type="number" placeholder="" name="bayar" class="form-control" id="bayar">
+                                <input type="number" placeholder="" name="bayar" class="form-control" id="bayar" onkeyup="kembali()">
+                            </div>
+                        </div>
 
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-2 col-form-label">Kembalian</label>
+                            <div class="col-sm-10">
+                                <input type="number" placeholder="" name="kembali" id="kembali" class="form-control" id="bayar" readonly>
                             </div>
                         </div>
 

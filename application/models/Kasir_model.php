@@ -55,4 +55,8 @@ class Kasir_model extends CI_Model
     {
         return $this->db->query("SELECT * FROM penjualan JOIN produk ON penjualan.produk=produk.kd_produk")->result();
     }
+    function user($kd)
+    {
+        return $this->db->query("SELECT * FROM user JOIN pegawai ON user.id_pegawai=pegawai.id_pegawai WHERE user.id_pegawai=$kd")->row_array();
+    }
 }
