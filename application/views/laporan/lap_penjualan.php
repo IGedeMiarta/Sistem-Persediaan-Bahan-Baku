@@ -7,14 +7,14 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Product</h4>
+                            <h4 class="page-title m-0">Laporan Penjualan</h4>
                         </div>
                         <div class="col-md-4">
                             <div class="float-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="<?= base_url('kasir') ?>">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Lap. Material Masuk</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Lap. Penjualan</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -60,7 +60,7 @@
                     $mulai = $_GET['tanggal_mulai'];
                     $sampai = $_GET['tanggal_sampai'];
                 ?>
-                    <a class='btn btn-primary' target="_blank" href='<?php echo base_url() . 'owner/mtrl_print?tanggal_mulai=' . $mulai . '&tanggal_sampai=' . $sampai ?>'><i class='fa fa-print'></i> CETAK</a>
+                    <a class='btn btn-primary' target="_blank" href='<?php echo base_url() . 'owner/penjualan_print?tanggal_mulai=' . $mulai . '&tanggal_sampai=' . $sampai ?>'><i class='fa fa-print'></i> CETAK</a>
                 <?php
                 }
                 ?>
@@ -71,26 +71,22 @@
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Waktu </th>
-                            <th scope="col">nama </th>
-                            <th scope="col">varian </th>
-                            <th scope="col">tipe</th>
-                            <th scope="col">supplier</th>
-                            <th scope="col">jumlah</th>
+                            <th scope="col">pemebeli </th>
+                            <th scope="col">produk </th>
+                            <th scope="col">harga</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <?php
                         $no = 1;
-                        foreach ($masuk as $m) { ?>
+                        foreach ($penjualan as $m) { ?>
                             <tr>
                                 <th width="10px" scope="row"><?= $no++ ?></th>
                                 <td><?= date('d M Y', strtotime($m->waktu)); ?></td>
+                                <td><?= $m->pembeli ?></td>
                                 <td><?= $m->nama ?></td>
-                                <td><?= $m->varian ?></td>
-                                <td><?= $m->tipe ?></td>
-                                <td><?= $m->nama_sup ?></td>
-                                <td><?= $m->jumlah . ' gram' ?></td>
+                                <td><?= $m->harga ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

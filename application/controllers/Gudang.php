@@ -13,6 +13,7 @@ class Gudang extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('gudang_model');
         $this->load->model('dashboard');
+        $this->load->model('laporan');
     }
 
     public function index()
@@ -226,5 +227,108 @@ class Gudang extends CI_Controller
         ];
         $this->gudang_model->insert($data, 'material_keluar');
         redirect('gudang/material_out');
+    }
+    // =============================================================================================
+
+
+    function lap_material()
+    {
+        if (isset($_GET['tanggal_mulai']) && isset($_GET['tanggal_sampai'])) {
+            $mulai = $this->input->get('tanggal_mulai');
+            $sampai = $this->input->get('tanggal_sampai');
+
+            $data['masuk'] = $this->laporan->mtrl_masuk($mulai, $sampai);
+        } else {
+            $data['masuk'] = $this->laporan->m_masuk();
+        }
+        $kd = $this->session->userdata('pegawai');
+        $data['user'] = $this->gudang_model->user($kd);
+        $this->load->view('gudang/default/header');
+        $this->load->view('gudang/default/sidebar');
+        $this->load->view('gudang/default/topbar', $data);
+        $this->load->view('laporan/lap_mtrl_masuk', $data);
+        $this->load->view('gudang/default/footer');
+    }
+
+    function mtrl_print()
+    {
+        if (isset($_GET['tanggal_mulai']) && isset($_GET['tanggal_sampai'])) {
+            $mulai = $this->input->get('tanggal_mulai');
+            $sampai = $this->input->get('tanggal_sampai');
+            // mengambil data peminjaman berdasarkan tanggal mulai sampai tanggal sampai
+
+            $data['masuk'] = $this->laporan->mtrl_masuk($mulai, $sampai);
+
+            $this->load->view('laporan/cetak/mtrl_masuk_cetak', $data);
+        } else {
+            redirect('gudang/lap_material');
+        }
+    }
+    function lap_stok()
+    {
+        $kd = $this->session->userdata('pegawai');
+        $data['user'] = $this->gudang_model->user($kd);
+        $data['stok'] = $this->laporan->stok_gudang();
+        $this->load->view('gudang/default/header');
+        $this->load->view('gudang/default/sidebar');
+        $this->load->view('gudang/default/topbar', $data);
+        $this->load->view('laporan/lap_stok', $data);
+        $this->load->view('gudang/default/footer');
+    }
+    function lap_stok_cetak()
+    {
+        $data['stok'] = $this->laporan->stok_gudang();
+        $this->load->view('laporan/cetak/lap_stok', $data);
+    }
+
+    function lap_produk()
+    {
+        $kd = $this->session->userdata('pegawai');
+        $data['user'] = $this->gudang_model->user($kd);
+        $data['produk'] = $this->laporan->produk();
+        $this->load->view('gudang/default/header');
+        $this->load->view('gudang/default/sidebar');
+        $this->load->view('gudang/default/topbar', $data);
+        $this->load->view('laporan/lap_produk', $data);
+        $this->load->view('gudang/default/footer');
+    }
+    function lap_produk_cetak()
+    {
+        $data['produk'] = $this->laporan->produk();
+        $this->load->view('laporan/cetak/lap_produk_cetak', $data);
+    }
+
+    function lap_penjualan()
+    {
+        if (isset($_GET['tanggal_mulai']) && isset($_GET['tanggal_sampai'])) {
+            $mulai = $this->input->get('tanggal_mulai');
+            $sampai = $this->input->get('tanggal_sampai');
+
+            $data['penjualan'] = $this->laporan->penjualan_str($mulai, $sampai);
+        } else {
+            $data['penjualan'] = $this->laporan->penjualan();
+        }
+        $kd = $this->session->userdata('pegawai');
+        $data['user'] = $this->gudang_model->user($kd);
+        $this->load->view('gudang/default/header');
+        $this->load->view('gudang/default/sidebar');
+        $this->load->view('gudang/default/topbar', $data);
+        $this->load->view('laporan/lap_penjualan', $data);
+        $this->load->view('gudang/default/footer');
+    }
+
+    function penjualan_print()
+    {
+        if (isset($_GET['tanggal_mulai']) && isset($_GET['tanggal_sampai'])) {
+            $mulai = $this->input->get('tanggal_mulai');
+            $sampai = $this->input->get('tanggal_sampai');
+            // mengambil data peminjaman berdasarkan tanggal mulai sampai tanggal sampai
+
+            $data['penjualan'] = $this->laporan->penjualan_str($mulai, $sampai);
+
+            $this->load->view('laporan/cetak/penjualan_cetak', $data);
+        } else {
+            redirect('gudang/lap_material');
+        }
     }
 }

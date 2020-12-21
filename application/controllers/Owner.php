@@ -274,7 +274,6 @@ class Owner extends CI_Controller
 
             $data['masuk'] = $this->laporan->mtrl_masuk($mulai, $sampai);
         } else {
-
             $data['masuk'] = $this->laporan->m_masuk();
         }
 
@@ -295,6 +294,68 @@ class Owner extends CI_Controller
             $data['masuk'] = $this->laporan->mtrl_masuk($mulai, $sampai);
 
             $this->load->view('laporan/cetak/mtrl_masuk_cetak', $data);
+        } else {
+            redirect('owner/lap_material');
+        }
+    }
+    function lap_stok()
+    {
+        $data['stok'] = $this->laporan->stok_gudang();
+        $this->load->view('owner/default/header');
+        $this->load->view('owner/default/sidebar');
+        $this->load->view('owner/default/topbar');
+        $this->load->view('laporan/lap_stok', $data);
+        $this->load->view('owner/default/footer');
+    }
+    function lap_stok_cetak()
+    {
+        $data['stok'] = $this->laporan->stok_gudang();
+        $this->load->view('laporan/cetak/lap_stok', $data);
+    }
+
+    function lap_produk()
+    {
+        $data['produk'] = $this->laporan->produk();
+        $this->load->view('owner/default/header');
+        $this->load->view('owner/default/sidebar');
+        $this->load->view('owner/default/topbar');
+        $this->load->view('laporan/lap_produk', $data);
+        $this->load->view('owner/default/footer');
+    }
+    function lap_produk_cetak()
+    {
+        $data['produk'] = $this->laporan->produk();
+        $this->load->view('laporan/cetak/lap_produk_cetak', $data);
+    }
+
+    function lap_penjualan()
+    {
+        if (isset($_GET['tanggal_mulai']) && isset($_GET['tanggal_sampai'])) {
+            $mulai = $this->input->get('tanggal_mulai');
+            $sampai = $this->input->get('tanggal_sampai');
+
+            $data['penjualan'] = $this->laporan->penjualan_str($mulai, $sampai);
+        } else {
+            $data['penjualan'] = $this->laporan->penjualan();
+        }
+
+        $this->load->view('owner/default/header');
+        $this->load->view('owner/default/sidebar');
+        $this->load->view('owner/default/topbar');
+        $this->load->view('laporan/lap_penjualan', $data);
+        $this->load->view('owner/default/footer');
+    }
+
+    function penjualan_print()
+    {
+        if (isset($_GET['tanggal_mulai']) && isset($_GET['tanggal_sampai'])) {
+            $mulai = $this->input->get('tanggal_mulai');
+            $sampai = $this->input->get('tanggal_sampai');
+            // mengambil data peminjaman berdasarkan tanggal mulai sampai tanggal sampai
+
+            $data['penjualan'] = $this->laporan->penjualan_str($mulai, $sampai);
+
+            $this->load->view('laporan/cetak/penjualan_cetak', $data);
         } else {
             redirect('owner/lap_material');
         }

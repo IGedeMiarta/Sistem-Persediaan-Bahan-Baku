@@ -50,8 +50,10 @@
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-print"></i><span> Laporan </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
+                                <li><a href="<?= base_url('owner/lap_penjualan') ?>"> Laporan Penjualan </a></li>
                                 <li><a href="<?= base_url('owner/lap_material') ?>"> Laporan Material</a></li>
-                                <li><a href="<?= base_url('Ups') ?>"> Laporan Stok </a></li>
+                                <li><a href="<?= base_url('owner/lap_stok') ?>"> Laporan Stok </a></li>
+                                <li><a href="<?= base_url('owner/lap_produk') ?>"> Laporan Produk </a></li>
                             </ul>
                         </li>
 
