@@ -30,10 +30,13 @@
             border-radius: 2px;
         }
     </style>
+    <?php
+    $tanggal = date("YmdHis");
 
+    ?>
     <?php
     header("Content-type: application/vnd-ms-excel");
-    header("Content-Disposition: attachment; filename=DataStok.xls");
+    header("Content-Disposition: attachment; filename=DataStok$tanggal.xls");
     ?>
 
     <center>

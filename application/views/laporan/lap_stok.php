@@ -1,7 +1,6 @@
 <div class="page-content-wrapper ">
 
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
@@ -30,7 +29,7 @@
         <div class="card">
 
             <div class="card-body">
-                <a href="<?= base_url('owner/lap_stok_cetak') ?>" class="btn btn-success mb-3">Export Excel</a>
+                <a href="<?= base_url('report/lap_stok_cetak') ?>" class="btn btn-success mb-3">Export Excel</a>
                 <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
@@ -41,7 +40,6 @@
                             <th scope="col">Stok</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         <?php
                         $no = 1;

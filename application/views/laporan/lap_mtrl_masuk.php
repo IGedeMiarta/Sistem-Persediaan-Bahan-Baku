@@ -60,7 +60,7 @@
                     $mulai = $_GET['tanggal_mulai'];
                     $sampai = $_GET['tanggal_sampai'];
                 ?>
-                    <a class='btn btn-primary' target="_blank" href='<?php echo base_url() . 'owner/mtrl_print?tanggal_mulai=' . $mulai . '&tanggal_sampai=' . $sampai ?>'><i class='fa fa-print'></i> CETAK</a>
+                    <a class='btn btn-primary' target="_blank" href='<?php echo base_url() . 'report/mtrl_print?tanggal_mulai=' . $mulai . '&tanggal_sampai=' . $sampai ?>'><i class='fa fa-print'></i> CETAK</a>
                 <?php
                 }
                 ?>

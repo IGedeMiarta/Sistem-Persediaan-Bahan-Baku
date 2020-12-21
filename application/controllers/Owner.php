@@ -160,7 +160,7 @@ class Owner extends CI_Controller
             'tgl_lahir' => $tgl_lahir,
             'no_hp' => $no_hp,
             'alamat' => $alamat,
-            'desk' => $desk
+            'role' => $desk
         ];
 
         $this->Pemilik->insert($data, 'pegawai');

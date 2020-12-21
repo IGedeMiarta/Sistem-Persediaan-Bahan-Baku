@@ -32,8 +32,9 @@
     </style>
 
     <?php
+    $tanggal = date("YmdHis");
     header("Content-type: application/vnd-ms-excel");
-    header("Content-Disposition: attachment; filename=ProdukReport.xls");
+    header("Content-Disposition: attachment; filename=ProdukReport$tanggal.xls");
     ?>
 
     <center>
