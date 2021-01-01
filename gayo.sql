@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2020 at 10:56 AM
+-- Generation Time: Dec 21, 2020 at 03:28 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -152,17 +152,18 @@ CREATE TABLE `pegawai` (
   `tgl_lahir` date NOT NULL,
   `no_hp` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL,
-  `desk` enum('1','2','','') NOT NULL
+  `role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pegawai`
 --
 
-INSERT INTO `pegawai` (`id_pegawai`, `nama`, `jenkel`, `tgl_lahir`, `no_hp`, `alamat`, `desk`) VALUES
-(1, 'Assabil Nur', 'L', '1998-06-14', '08722217767', 'Jl. Magelang Km 5, Sleman', '1'),
-(2, 'Andrei Asyari Zein', 'L', '1997-09-01', '081124888712', 'Mlati, Sleman Yogyakarta', '2'),
-(4, 'irfa gede', 'L', '1998-05-24', '081631977730', 'simpang teritit, aceh', '1');
+INSERT INTO `pegawai` (`id_pegawai`, `nama`, `jenkel`, `tgl_lahir`, `no_hp`, `alamat`, `role`) VALUES
+(1, 'Assabil Nur', 'L', '1998-06-14', '08722217767', 'Jl. Magelang Km 5, Sleman', 3),
+(2, 'Andrei Asyari Zein', 'L', '1997-09-01', '081124888712', 'Mlati, Sleman Yogyakarta', 2),
+(4, 'Irwa Windi', 'L', '1998-05-24', '081631977730', 'simpang teritit, aceh', 2),
+(5, 'Diana Prastika', 'P', '2020-12-02', '081521555980', 'yogya', 2);
 
 -- --------------------------------------------------------
 
@@ -184,7 +185,8 @@ CREATE TABLE `penjualan` (
 
 INSERT INTO `penjualan` (`kd_jual`, `produk`, `pembeli`, `waktu`, `bayar`) VALUES
 (2, 5, 'Prida', '2020-12-09 14:04:53', 20000),
-(3, 5, 'robet', '2020-12-10 10:49:44', 20000);
+(3, 5, 'robet', '2020-12-10 10:49:44', 20000),
+(4, 5, 'robet', '2020-12-12 11:57:38', 20000);
 
 -- --------------------------------------------------------
 
@@ -207,10 +209,10 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`kd_produk`, `gambar`, `nama`, `deskripsi`, `material`, `material_cost`, `harga`) VALUES
-(5, '', 'Mild brown sugar', '', 16, 5, 14000),
-(6, '', 'Sweet Cherry', '', 16, 4, 15000),
-(7, '', 'Sweet caramel', '', 14, 5, 18000),
-(8, '', 'Choco brown sugar', 'Dengan Tambahan Brown Sugar Membuat Rasa Kopi Menjadi Semakin Sweet dan lebih nikmat di tenggorokan', 14, 4, 13000);
+(5, '', 'Mild brown sugar', 'kopi gayo dengan tambahan brown sugar', 16, 5, 14000),
+(6, '', 'Sweet Cherry', 'kopi gayo dengan varian rasa cerry', 16, 4, 15000),
+(7, '', 'Sweet caramel', 'kopi gayo dengan ice caramel', 14, 5, 18000),
+(8, '', 'Choco brown sugar', 'kopi gayo dengan varian rasa coklat brown sugar', 14, 4, 13000);
 
 -- --------------------------------------------------------
 
@@ -263,6 +265,7 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `id_pegawai` int(11) NOT NULL,
   `role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -270,10 +273,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `role`) VALUES
-(1, 'miartayasa', '$2y$10$TTOCEIH2yPiTBKnyUYV5/.eCBrCtfi/UmsPsXeKkJlvM7vq/3WHUW', 2),
-(2, 'admin', '$2y$10$FmO8fDbUZcPH7X9NP1NGoetVZ5YCo86uzQ2iBcOmH9UFBaNc1L86a', 1),
-(3, 'gudang', '$2y$10$xKNzh3iaBuCNKfZ2JkXocOkG1xgETrKvUaXqwRDjB6dfGv8D6/W.u', 3);
+INSERT INTO `user` (`id`, `username`, `password`, `id_pegawai`, `role`) VALUES
+(1, 'admin', '$2y$10$FmO8fDbUZcPH7X9NP1NGoetVZ5YCo86uzQ2iBcOmH9UFBaNc1L86a', 0, 1),
+(4, 'kasir', '$2y$10$DJoHAGNekv4ZcOXk5fUQg.DQ0IS0tYB83KNr/Taviw7KfrGooiaVy', 4, 2),
+(5, 'gudang', '$2y$10$Rr1roEtcJzY1WSkSICHdXOhUNVkqJMDL0voCiX/ljJ0IpSo6lqeK2', 2, 3),
+(6, 'diana', '$2y$10$7YzIqby8P1Cvm1JAYsJYEeMjtV2/OGrGJVtEYl/YOKoGxraVEm/mW', 5, 2);
 
 --
 -- Indexes for dumped tables
@@ -365,13 +369,13 @@ ALTER TABLE `material_masuk`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `kd_jual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `kd_jual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `produk`
@@ -395,7 +399,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

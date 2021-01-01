@@ -39,6 +39,7 @@ class Gudang extends CI_Controller
         $data['user'] = $this->gudang_model->user($kd);
 
         $data['material'] = $this->gudang_model->stok_gudang();
+        $data['kasir'] = $this->gudang_model->stok_kasir();
         $this->load->view('gudang/default/header');
         $this->load->view('gudang/default/sidebar');
         $this->load->view('gudang/default/topbar', $data);
@@ -199,11 +200,11 @@ class Gudang extends CI_Controller
         $this->load->view('gudang/material_out', $data);
         $this->load->view('gudang/default/footer');
     }
+
     public function material_out_add()
     {
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->gudang_model->user($kd);
-
         $data['material'] = $this->gudang_model->stok_gudang();
         $data['supplier'] = $this->gudang_model->read('supplier')->result();
         $this->load->view('gudang/default/header');
@@ -330,5 +331,9 @@ class Gudang extends CI_Controller
         } else {
             redirect('gudang/lap_material');
         }
+    }
+
+    function material_kasir(){
+        
     }
 }

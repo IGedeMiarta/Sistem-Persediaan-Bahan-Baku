@@ -22,7 +22,6 @@
             </div>
         </div>
         <!-- end page title -->
-        <?php var_dump($pegawai); ?>
         <div class="card">
             <div class="card-body">
                 <?php foreach ($pegawai as $p) ?>

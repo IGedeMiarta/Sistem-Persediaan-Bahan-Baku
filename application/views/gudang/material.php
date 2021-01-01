@@ -24,6 +24,9 @@
         <!-- end page title -->
 
         <div class="card">
+            <div class="card-header alert alert-dark">
+                <h5 class="text-dark">Stok Gudang</h5>
+            </div>
             <div class="card-body">
                 <!-- <a href="<?= base_url('owner/material_add') ?>" class="btn btn-success mb-3"><i class="dripicons-plus"></i> Tambah</a> -->
                 <div class="float-left d-none d-md-block mb-3">
@@ -73,7 +76,53 @@
                                 </td>
                                 <td class="text-center" width=10px>
                                     <a href="<?= base_url('gudang/material_edt/' . $mtrl->kd_material) ?>" class="badge badge-warning"><i class="dripicons-document-edit"></i> Edit</a>
-                                    <!-- <a href="<?= base_url('owner/pegawai_del/' . $mtrl->kd_material) ?>" class="badge badge-danger"><i class="dripicons-trash"></i> Hapus</a> -->
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header alert alert-dark">
+                <h5 class="text-dark">Stok Kasir</h5>
+            </div>
+            <div class="card-body">
+                <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama </th>
+                            <th scope="col">Varian</th>
+                            <th scope="col">Tipe</th>
+                            <th class="text-center" scope="col">
+                                Stok </br> (gram)
+                            </th>
+                            <th scope="col">Option</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        foreach ($kasir as $k) { ?>
+                            <tr>
+                                <th width="10px" scope="row"><?= $no++ ?></th>
+
+                                <td><?= $k->nama ?></td>
+                                <td><?= $k->varian ?></td>
+                                <td><?= $k->tipe ?></td>
+                                <td class="text-center">
+                                    <?php
+                                    if ($k->stok != 0) {
+                                        echo $k->stok . ' gram';
+                                    } else {
+                                        echo ' - ';
+                                    }
+                                    ?>
+                                </td>
+                                <td class="text-center" width=10px>
+                                    <a href="<?= base_url('gudang/material_kasir' . $k->kd_material) ?>" class="badge badge-success"><i class="dripicons-document-edit"></i> Tambah</a>
                                 </td>
                             </tr>
                         <?php } ?>

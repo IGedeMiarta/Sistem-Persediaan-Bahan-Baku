@@ -8,6 +8,11 @@ class Gudang_model extends CI_Model
         $query = $this->db->query("SELECT * FROM material WHERE detail='Gudang'");
         return $query->result();
     }
+    function stok_kasir()
+    {
+        $query = $this->db->query("SELECT * FROM material WHERE detail='Kasir'");
+        return $query->result();
+    }
     function stok($material)
     {
         return $this->db->query("SELECT * FROM material WHERE kd_material=$material")->result();
