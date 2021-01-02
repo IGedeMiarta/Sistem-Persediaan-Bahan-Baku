@@ -30,8 +30,6 @@
 
         <div class="card">
             <div class="card-body">
-                <a href="<?= base_url('kasir/product_add') ?>" class="btn btn-success mb-3"><i class="dripicons-plus"></i> Tambah</a>
-
                 <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>

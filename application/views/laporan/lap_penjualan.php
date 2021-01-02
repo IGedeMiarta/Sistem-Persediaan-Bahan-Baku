@@ -29,7 +29,7 @@
         <!-- end page title -->
         <div class="card">
             <div class="card-body">
-                <div class="row">
+                <div class="row pull-right">
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-header text-center">
@@ -65,6 +65,8 @@
                 }
                 ?>
             </div>
+        </div>
+        <div class="card">
             <div class="card-body">
                 <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>

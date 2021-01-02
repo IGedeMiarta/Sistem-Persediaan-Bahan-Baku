@@ -39,7 +39,8 @@ class Login extends CI_Controller
                         'username' => $user['username'],
                         'role' => $user['role'],
                         'pegawai' => $user['id_pegawai'],
-                        'status' => 'login_admin'
+                        'status' => 'login_admin',
+                        'side' => 'admin'
                     ];
                     $this->session->set_userdata($data);
                     redirect('owner');
@@ -49,7 +50,8 @@ class Login extends CI_Controller
                         'username' => $user['username'],
                         'role' => $user['role'],
                         'pegawai' => $user['id_pegawai'],
-                        'status' => 'login_kasir'
+                        'status' => 'login_kasir',
+                        'side' => 'kasir'
                     ];
                     $this->session->set_userdata($data);
                     redirect('kasir');
@@ -59,7 +61,8 @@ class Login extends CI_Controller
                         'username' => $user['username'],
                         'role' => $user['role'],
                         'pegawai' => $user['id_pegawai'],
-                        'status' => 'login_gudang'
+                        'status' => 'login_gudang',
+                        'side' => 'gudang'
                     ];
                     $this->session->set_userdata($data);
                     redirect('gudang');

@@ -14,49 +14,50 @@ class Kasir extends CI_Controller
         $this->load->model('kasir_model');
         $this->load->model('dashboard');
         $this->load->model('laporan');
+        $this->load->model('alert');
     }
 
     public function index()
     {
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
-
         $data['pegawai'] = $this->dashboard->_pegawai();
         $data['supplier'] = $this->dashboard->_supplier();
         $data['produk'] = $this->dashboard->_produk();
         $data['jual'] = $this->dashboard->_selling();
         $data['terjual'] = $this->dashboard->_sell();
         $data['teks'] = "Halaman Kasir, Sistem Persedian Bahan Baku Kedai Kopi Gayo, Kasir dapat menambahkan data produk, menginputkan data material masuk dari gudang dan dapat menambahakan data penjualan serta melakukan transaksi penjualan";
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $data['alert'] = $this->alert->notif();
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('dashboard', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
     public function product()
     {
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
-
+        $data['alert'] = $this->alert->notif();
         $data['product'] = $this->kasir_model->read('produk');
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('kasir/product', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
     public function product_add()
     {
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
-
+        $data['alert'] = $this->alert->notif();
         $whare = array('detail' => 'Kasir');
         $data['material'] = $this->kasir_model->edit($whare, 'material');
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('kasir/product_add', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
     public function product_add_act()
     {
@@ -80,16 +81,16 @@ class Kasir extends CI_Controller
     {
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
-
+        $data['alert'] = $this->alert->notif();
         $data['prod'] = $this->kasir_model->edit_product($kd_product);
         $where = array('detail' => 'Kasir');
         $data['material'] = $this->kasir_model->edit($where, 'material');
 
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('kasir/product_edt', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
     public function product_edt_act($kd_product)
     {
@@ -120,14 +121,15 @@ class Kasir extends CI_Controller
     {
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
-
+        $data['alert'] = $this->alert->notif();
         $data['material'] = $this->kasir_model->material_in();
         $data['masuk'] = $this->kasir_model->material_acc();
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('kasir/material_in', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
     public function terima()
     {
@@ -161,27 +163,27 @@ class Kasir extends CI_Controller
     {
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
-
+        $data['alert'] = $this->alert->notif();
         $whare = array('detail' => 'Kasir');
         $data['material'] = $this->kasir_model->edit($whare, 'material');
 
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('kasir/material', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
     public function sell()
     {
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
-
+        $data['alert'] = $this->alert->notif();
         $data['produk'] = $this->kasir_model->read('produk');
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('kasir/sell', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
     public function sell_add($kd_produk)
     {
@@ -189,12 +191,12 @@ class Kasir extends CI_Controller
         $data['produk'] = $this->kasir_model->edit($whare, 'produk');
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
-
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $data['alert'] = $this->alert->notif();
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('kasir/pembelian', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
     public function sell_act()
     {
@@ -217,13 +219,13 @@ class Kasir extends CI_Controller
     {
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
-
+        $data['alert'] = $this->alert->notif();
         $data['sell'] = $this->kasir_model->penjualan();
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('kasir/transaksi', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
 
     // =========================================================================================
@@ -239,13 +241,14 @@ class Kasir extends CI_Controller
         } else {
             $data['masuk'] = $this->laporan->m_masuk();
         }
+        $data['alert'] = $this->alert->notif();
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('laporan/lap_mtrl_masuk', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
 
     function mtrl_print()
@@ -264,14 +267,15 @@ class Kasir extends CI_Controller
     }
     function lap_stok()
     {
+        $data['alert'] = $this->alert->notif();
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
         $data['stok'] = $this->laporan->stok_gudang();
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('laporan/lap_stok', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
     function lap_stok_cetak()
     {
@@ -281,14 +285,15 @@ class Kasir extends CI_Controller
 
     function lap_produk()
     {
+        $data['alert'] = $this->alert->notif();
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
         $data['produk'] = $this->laporan->produk();
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('laporan/lap_produk', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
     function lap_produk_cetak()
     {
@@ -306,13 +311,14 @@ class Kasir extends CI_Controller
         } else {
             $data['penjualan'] = $this->laporan->penjualan();
         }
+        $data['alert'] = $this->alert->notif();
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
-        $this->load->view('kasir/default/header');
-        $this->load->view('kasir/default/sidebar');
-        $this->load->view('kasir/default/topbar', $data);
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
         $this->load->view('laporan/lap_penjualan', $data);
-        $this->load->view('kasir/default/footer');
+        $this->load->view('default/footer');
     }
 
     function penjualan_print()

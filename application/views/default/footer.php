@@ -15,7 +15,6 @@
 
 <!-- jQuery  -->
 <script src="<?= base_url('vendor/admin/assets/js/jquery.min.js') ?>"></script>
-
 <script src="<?= base_url('vendor/admin/assets/js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?= base_url('vendor/admin/assets/js/modernizr.min.js') ?>"></script>
 <script src="<?= base_url('vendor/admin/assets/js/detect.js') ?>"></script>
@@ -26,15 +25,28 @@
 <script src="<?= base_url('vendor/admin/assets/js/jquery.nicescroll.js') ?>"></script>
 <script src="<?= base_url('vendor/admin/assets/js/jquery.scrollTo.min.js') ?>"></script>
 
+<!-- Required datatable js -->
+<script src="<?= base_url('vendor/plugins/datatables/jquery.dataTables.min.js') ?>"></script>
+<script src="<?= base_url('vendor/plugins/datatables/dataTables.bootstrap4.min.js') ?>"></script>
+
 <!--Morris Chart-->
-<!-- <script src="<?= base_url('vendor/plugins/morris/morris.min.js') ?>"></script>
-<script src="<?= base_url('vendor/plugins/raphael/raphael.min.js') ?>"></script> -->
+<script src="<?= base_url('vendor/plugins/morris/morris.min.js') ?>"></script>
+<script src="<?= base_url('vendor/plugins/raphael/raphael.min.js') ?>"></script>
 
 <!-- dashboard js -->
 <script src="<?= base_url('vendor/admin/assets/pages/dashboard.int.js') ?>"></script>
 
+<!-- Responsive examples -->
+<script src="<?= base_url('vendor/plugins/datatables/dataTables.responsive.min.js') ?>"></script>
+<script src="<?= base_url('vendor/plugins/datatables/responsive.bootstrap4.min.js') ?>"></script>
+
+<!-- Datatable init js -->
+<script src="<?= base_url('vendor/admin/assets/pages/datatables.init.js') ?>"></script>
+
+
 <!-- App js -->
 <script src="<?= base_url('vendor/admin/assets/js/app.js') ?>"></script>
+
 
 <script type="text/javascript">
     function autofill() {
@@ -44,7 +56,6 @@
             data: 'material=' + material,
             success: function(data) {
                 var hasil = JSON.parse(data);
-
                 $.each(hasil, function(key, val) {
                     document.getElementById('stok').value = val.stok;
                 });

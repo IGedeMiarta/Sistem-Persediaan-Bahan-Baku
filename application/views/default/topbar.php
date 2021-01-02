@@ -17,12 +17,13 @@
                 <!-- Search input -->
 
                 <ul class="list-inline float-right mb-0">
-
-
                     <li class="list-inline-item dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <i class="mdi mdi-bell-outline noti-icon"></i>
-                            <span class="badge badge-danger badge-pill noti-icon-badge"></span>
+                            <?php if ($alert['alert'] != 0) {
+                                echo '<span class="badge badge-danger badge-pill noti-icon-badge">' . $alert['alert'] . '</span>';
+                            }
+                            ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg dropdown-menu-animated">
                             <!-- item-->
@@ -56,7 +57,14 @@
                     <li class="list-inline-item dropdown notification-list nav-user">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <img src="<?= base_url('vendor/admin/assets/images/users/avatar-6.jpg') ?>" alt="user" class="rounded-circle">
-                            <span class="d-none d-md-inline-block ml-1">Administrator <i class="mdi mdi-chevron-down"></i> </span>
+                            <span class="d-none d-md-inline-block ml-1">
+                                <?php if ($this->session->userdata('side') == 'admin') {
+                                    echo 'Administrator';
+                                } else {
+                                    echo $user['nama'];
+                                }
+                                ?>
+                                <i class="mdi mdi-chevron-down"></i> </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
                             <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>

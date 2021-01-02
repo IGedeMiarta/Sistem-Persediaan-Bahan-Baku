@@ -21,22 +21,21 @@
 
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="<?= base_url('gudang/material_out_act') ?>">
-                    <!-- <div class="form-group row">
+                <form method="POST" action="<?= base_url('gudang/material_kasir_act') ?>">
+
+                    <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">Nama Material</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="material" id="material" onchange="autofill()">
-                                <option selected>-- Pilih</option>
-                                <?php foreach ($material as $mtrl) { ?>
-                                    <option value="<?= $mtrl->kd_material; ?>"><?= $mtrl->nama; ?></option>
-                                <?php } ?>
+                            <select class="form-control" name="material" id="material">
+                                <option selected value="<?= $out['kd_material']; ?>"> <?= $out['nama']; ?></option>
+                                <!-- <option value="<?= $out['kd_material']; ?>"><?= $out['nama']; ?></option> -->
                             </select>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">Tersedia</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="stok" name="jumlah" placeholder="Material Tersedia / gram" readonly>
+                            <input type="number" class="form-control" id="stok" name="jumlah" placeholder="Material Tersedia / gram" value="<?= $out['stok']; ?>" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -59,6 +58,8 @@
 
         </div>
         <!-- end page title -->
+
+
     </div><!-- container fluid -->
 
 </div> <!-- Page content Wrapper -->

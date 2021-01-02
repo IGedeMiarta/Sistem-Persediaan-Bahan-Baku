@@ -7,7 +7,7 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Product</h4>
+                            <h4 class="page-title m-0">Laporan Material Masuk</h4>
                         </div>
                         <div class="col-md-4">
                             <div class="float-right">
@@ -27,6 +27,7 @@
             </div>
         </div>
         <!-- end page title -->
+
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -65,6 +66,10 @@
                 }
                 ?>
             </div>
+        </div>
+
+        <div class="card">
+
             <div class="card-body">
                 <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>

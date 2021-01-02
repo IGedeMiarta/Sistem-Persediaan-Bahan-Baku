@@ -23,24 +23,64 @@
         </div>
         <!-- end page title -->
 
-        <div class="card">
-            <div class="card-header alert alert-dark">
-                <h5 class="text-dark">Stok Gudang</h5>
-            </div>
-            <div class="card-body">
-                <!-- <a href="<?= base_url('owner/material_add') ?>" class="btn btn-success mb-3"><i class="dripicons-plus"></i> Tambah</a> -->
-                <div class="float-left d-none d-md-block mb-3">
-                    <div class="dropdown">
-                        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="dripicons-plus mr-1"></i> Tambah
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header badge badge-primary" id="headingOne">
+                    <h5>Tambah Data Material</h5>
+                    <h2 class="mt-n5 mb-n1">
+                        <button class="btn btn-link btn-block text-right" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <a href="#" class="btn btn-primary"><i class="far fa-eye"></i></a>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-left dropdown-menu-animated">
-                            <a class="dropdown-item" href="<?= base_url('gudang/material_add') ?>">Data Material</a>
-                            <a class="dropdown-item" href="<?= base_url('gudang/material_in') ?>">Material Masuk</a>
-                            <a class="dropdown-item" href="<?= base_url('gudang/material_out') ?>">Material Keluar</a>
-                        </div>
+                    </h2>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form method="POST" action="<?= base_url('gudang/material_add_act') ?>">
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-sm-2 col-form-label">Nama Material</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nama Material" value="<?= set_value('name'); ?>">
+                                    <?= form_error('name', '<small class="text-danger pl-3">', '</small>');  ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-sm-2 col-form-label">Varian</label>
+                                <div class="col-sm-10">
+                                    <?php
+                                    $style = 'class="form-control input-sm"';
+                                    echo form_dropdown('varian', $varian, '', $style);
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-sm-2 col-form-label">Tipe</label>
+                                <div class="col-sm-10">
+                                    <?php
+                                    $style = 'class="form-control input-sm"';
+                                    echo form_dropdown('tipe', $tipe, '', $style);
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2">
+
+                                </div>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary mt-2">Simpan</button>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header badge badge-dark">
+                <h5>Stok Gudang</h5>
+            </div>
+            <div class="card-body">
                 <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
@@ -54,7 +94,6 @@
                             <th scope="col">Option</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         <?php
                         $no = 1;
@@ -84,11 +123,11 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-header alert alert-dark">
-                <h5 class="text-dark">Stok Kasir</h5>
+            <div class="card-header badge badge-warning">
+                <h5>Stok Kasir</h5>
             </div>
             <div class="card-body">
-                <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
@@ -114,15 +153,17 @@
                                 <td><?= $k->tipe ?></td>
                                 <td class="text-center">
                                     <?php
-                                    if ($k->stok != 0) {
+                                    if ($k->stok >= 5) {
                                         echo $k->stok . ' gram';
+                                    } else if ($k->stok <= 5 && $k->stok != 0) {
+                                        echo '<h1 class="badge badge-danger">' . $k->stok . '</h1>';
                                     } else {
-                                        echo ' - ';
+                                        echo '<h1 class="badge badge-danger">Kosong</h1>';
                                     }
                                     ?>
                                 </td>
                                 <td class="text-center" width=10px>
-                                    <a href="<?= base_url('gudang/material_kasir' . $k->kd_material) ?>" class="badge badge-success"><i class="dripicons-document-edit"></i> Tambah</a>
+                                    <a href="<?= base_url('gudang/material_kasir/' . $k->kd_material) ?>" class="badge badge-success"><i class="dripicons-document-edit"></i> Tambah</a>
                                 </td>
                             </tr>
                         <?php } ?>

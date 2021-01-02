@@ -27,50 +27,60 @@
             </div>
         </div>
         <!-- end page title -->
+        <?php if ($alert['alert'] != 0) { ?>
+            <div class="card">
+                <div class="card-header badge badge-danger">
+                    <h5>Material Masuk</h5>
+                </div>
+                <div class="card-body">
+                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Nama Material </th>
+                                <th scope="col">Varian</th>
+                                <th scope="col">Tipe</th>
+                                <th class="text-center" scope="col">
+                                    Jumlah Masuk
+                                </th>
+                                <!-- <th scope="col">Detail</th> -->
+                                <th scope="col">Option</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                            $no = 1;
+                            foreach ($material as $mtrl) { ?>
+                                <tr>
+                                    <th width="10px" scope="row"><?= $no++ ?></th>
+                                    <td><?= $mtrl->waktu ?></td>
+                                    <td><?= $mtrl->nama ?></td>
+                                    <td><?= $mtrl->varian ?></td>
+                                    <td><?= $mtrl->tipe ?></td>
+                                    <td class="text-center"><?= $mtrl->jumlah ?> gram</td>
+                                    <td>
+                                        <a href="<?= base_url('kasir/terima?material=' . $mtrl->kd_material . '&kd=' . $mtrl->kd_keluar) ?>" class="badge badge-success"><i class="dripicons-document-edit"></i> Terima</a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php } ?>
 
         <div class="card">
-            <div class="card-body">
-                <h6>Material Masuk Dari Gudang</h6>
-                <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama Material </th>
-                            <th scope="col">Varian</th>
-                            <th scope="col">Tipe</th>
-                            <th class="text-center" scope="col">
-                                Jumlah Masuk
-                            </th>
-                            <!-- <th scope="col">Detail</th> -->
-                            <th scope="col">Option</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php
-                        $no = 1;
-                        foreach ($material as $mtrl) { ?>
-                            <tr>
-                                <th width="10px" scope="row"><?= $no++ ?></th>
-
-                                <td><?= $mtrl->nama ?></td>
-                                <td><?= $mtrl->varian ?></td>
-                                <td><?= $mtrl->tipe ?></td>
-                                <td class="text-center"><?= $mtrl->jumlah ?> gram</td>
-                                <td>
-                                    <a href="<?= base_url('kasir/terima?material=' . $mtrl->kd_material . '&kd=' . $mtrl->kd_keluar) ?>" class="badge badge-success"><i class="dripicons-document-edit"></i> Terima</a>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+            <div class="card-header badge badge-dark">
+                <h5>Data Material</h5>
             </div>
             <div class="card-body">
-                <h6>Material Masuk</h6>
                 <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
+                            <th scope="col">Tanggal</th>
                             <th scope="col">Nama Material </th>
                             <th scope="col">Varian</th>
                             <th scope="col">Tipe</th>
@@ -87,7 +97,7 @@
                         foreach ($masuk as $m) { ?>
                             <tr>
                                 <th width="10px" scope="row"><?= $no++ ?></th>
-
+                                <td><?= $m->waktu ?></td>
                                 <td><?= $m->nama ?></td>
                                 <td><?= $m->varian ?></td>
                                 <td><?= $m->tipe ?></td>
