@@ -24,6 +24,7 @@ class Owner extends CI_Controller
         $data['produk'] = $this->dashboard->_produk();
         $data['jual'] = $this->dashboard->_selling();
         $data['terjual'] = $this->dashboard->_sell();
+        $data['status'] = $this->alert->notifikasi();
         $data['teks'] = "Halaman Administrator Sistem Persedian Bahan Baku Kedai Kopi Gayo, admin dapat menambah pegawai dengan menginputkan data pegawai, mendaftarkan pegawai sebagai user untuk dapat login ke sistem sebagai Bag. kasir atau Bag. Gudang, dan dapat menambah data supplier";
         $data['alert'] = $this->alert->notif();
         $this->load->view('default/header');
@@ -37,6 +38,7 @@ class Owner extends CI_Controller
     {
         $data['supplier'] = $this->Pemilik->read('supplier')->result();
         $data['alert'] = $this->alert->notif();
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -46,6 +48,7 @@ class Owner extends CI_Controller
 
     public function supplier_add()
     {
+        $data['status'] = $this->alert->notifikasi();
         $data['alert'] = $this->alert->notif();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
@@ -62,6 +65,7 @@ class Owner extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
 
         if ($this->form_validation->run() == false) {
+            $data['status'] = $this->alert->notifikasi();
             $data['alert'] = $this->alert->notif();
             $this->load->view('default/header');
             $this->load->view('default/sidebar', $data);
@@ -89,6 +93,7 @@ class Owner extends CI_Controller
     public function supplier_edt($id_sup)
     {
         $where = array('id_sup' => $id_sup);
+        $data['status'] = $this->alert->notifikasi();
         $data['supplier'] = $this->Pemilik->edit($where, 'supplier')->result();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
@@ -99,6 +104,7 @@ class Owner extends CI_Controller
     public function supplier_edt_act($id_sup)
     {
         $where = array('id_sup' => $id_sup);
+        $data['status'] = $this->alert->notifikasi();
         $this->form_validation->set_rules('sup_name', 'Sup_name', 'trim|required');
         $this->form_validation->set_rules('owner', 'Owner', 'trim|required');
         $this->form_validation->set_rules('hp', 'Hp', 'trim|required');
@@ -139,6 +145,7 @@ class Owner extends CI_Controller
     {
         $data['pegawai'] = $this->Pemilik->_pegawai();
         $data['alert'] = $this->alert->notif();
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -148,6 +155,7 @@ class Owner extends CI_Controller
     public function pegawai_add()
     {
         $data['alert'] = $this->alert->notif();
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -179,6 +187,7 @@ class Owner extends CI_Controller
         $where = array('id_pegawai' => $id_pegawai);
         $data['pegawai'] = $this->Pemilik->edit($where, 'pegawai');
         $data['alert'] = $this->alert->notif();
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -221,6 +230,7 @@ class Owner extends CI_Controller
         $where = array('id_pegawai' => $id_pegawai);
         $data['pegawai'] = $this->Pemilik->edit($where, 'pegawai');
         $data['alert'] = $this->alert->notif();
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -243,6 +253,7 @@ class Owner extends CI_Controller
             $where = array('id_pegawai' => $id_pegawai);
             $data['pegawai'] = $this->Pemilik->edit($where, 'pegawai');
             $data['alert'] = $this->alert->notif();
+            $data['status'] = $this->alert->notifikasi();
             $this->load->view('default/header');
             $this->load->view('default/sidebar', $data);
             $this->load->view('default/topbar', $data);
@@ -265,6 +276,7 @@ class Owner extends CI_Controller
     {
         $data['alert'] = $this->alert->notif();
         $data['product'] = $this->Pemilik->data_product();
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -286,6 +298,7 @@ class Owner extends CI_Controller
             $data['masuk'] = $this->laporan->m_masuk();
         }
         $data['alert'] = $this->alert->notif();
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -309,6 +322,7 @@ class Owner extends CI_Controller
     }
     function lap_stok()
     {
+        $data['status'] = $this->alert->notifikasi();
         $data['alert'] = $this->alert->notif();
         $data['stok'] = $this->laporan->stok_gudang();
         $this->load->view('default/header');
@@ -319,6 +333,7 @@ class Owner extends CI_Controller
     }
     function lap_stok_cetak()
     {
+        $data['status'] = $this->alert->notifikasi();
         $data['alert'] = $this->alert->notif();
         $data['stok'] = $this->laporan->stok_gudang();
         $this->load->view('laporan/cetak/lap_stok', $data);
@@ -326,6 +341,7 @@ class Owner extends CI_Controller
 
     function lap_produk()
     {
+        $data['status'] = $this->alert->notifikasi();
         $data['alert'] = $this->alert->notif();
         $data['produk'] = $this->laporan->produk();
         $this->load->view('default/header');
@@ -350,6 +366,7 @@ class Owner extends CI_Controller
         } else {
             $data['penjualan'] = $this->laporan->penjualan();
         }
+        $data['status'] = $this->alert->notifikasi();
         $data['alert'] = $this->alert->notif();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);

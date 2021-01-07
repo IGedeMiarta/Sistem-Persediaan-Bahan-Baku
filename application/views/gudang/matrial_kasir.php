@@ -35,7 +35,7 @@
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">Tersedia</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="stok" name="jumlah" placeholder="Material Tersedia / gram" value="<?= $out['stok']; ?>" readonly>
+                            <input type="number" class="form-control" id="stok" name="jumlah" placeholder="Material Tersedia / gram" value="<?= $out['stok']; ?>" readonly required>
                         </div>
                     </div>
                     <div class="form-group row">

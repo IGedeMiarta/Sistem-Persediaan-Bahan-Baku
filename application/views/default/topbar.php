@@ -20,30 +20,30 @@
                     <li class="list-inline-item dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <i class="mdi mdi-bell-outline noti-icon"></i>
-                            <?php if ($alert['alert'] != 0) {
-                                echo '<span class="badge badge-danger badge-pill noti-icon-badge">' . $alert['alert'] . '</span>';
-                            }
-                            ?>
+                            <?php if ($alert['alert'] != 0) { ?>
+                                <?php echo '<span class="badge badge-danger badge-pill noti-icon-badge">' . $alert['alert'] . '</span>'; ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg dropdown-menu-animated">
                             <!-- item-->
                             <div class="dropdown-item noti-title">
-                                <h5>Notification (3)</h5>
+                                <h5>Notification (<?= $alert['alert'] ?>)</h5>
                             </div>
+
+
 
                             <div class="slimscroll-noti">
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item active">
-                                    <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                                    <p class="notify-details"><b>Your order is placed</b><span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-danger"><i class="mdi mdi-message-text-outline"></i></div>
-                                    <p class="notify-details"><b>New Message received</b><span class="text-muted">You have 87 unread messages</span></p>
-                                </a>
+                                <?php foreach ($status as $s) { ?>
+                                    <?php if ($this->session->userdata('side') == 'kasir') { ?>
+                                        <a href="<?= base_url('kasir/material_in') ?>" class="dropdown-item notify-item active mb-1">
+                                        <?php } else { ?>
+                                            <a href="#" class="dropdown-item notify-item active mb-1">
+                                            <?php } ?>
+                                            <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
+                                            <p class="notify-details"><b><?= $s->nama . ' [ ' . $s->jumlah . ' gram ]' ?></b><span class="text-muted">Menunggu Konfirmasi Bagian Kasir</span></p>
+                                            </a>
+                                        <?php } ?>
                             </div>
+
 
 
                             <!-- All-->
@@ -52,6 +52,8 @@
                             </a>
 
                         </div>
+                    <?php }
+                    ?>
                     </li>
 
                     <li class="list-inline-item dropdown notification-list nav-user">
@@ -67,8 +69,8 @@
                                 <i class="mdi mdi-chevron-down"></i> </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
-                            <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
-                            <div class="dropdown-divider"></div>
+                            <!-- <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
                             <a class="dropdown-item" href="<?= base_url('login/logout') ?>"><i class="dripicons-exit text-muted"></i> Logout</a>
                         </div>
                     </li>

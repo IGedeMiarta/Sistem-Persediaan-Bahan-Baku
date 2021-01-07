@@ -46,7 +46,6 @@
                         </div>
                         <input type="text" class="form-control mb-3" id="name" name="name" placeholder="Nama Produk" value="<?= $p->kd_produk ?>" hidden>
 
-
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Harga Produk</label>
                             <div class="col-sm-10">

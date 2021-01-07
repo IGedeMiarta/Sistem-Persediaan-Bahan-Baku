@@ -89,9 +89,9 @@
                             <th scope="col">Varian</th>
                             <th scope="col">Tipe</th>
                             <th class="text-center" scope="col">
-                                Stok </br> (gram)
+                                Stok Gudang</br> (gram)
                             </th>
-                            <th scope="col">Option</th>
+                            <!-- <th scope="col">Option</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -106,16 +106,19 @@
                                 <td><?= $mtrl->tipe ?></td>
                                 <td class="text-center">
                                     <?php
-                                    if ($mtrl->stok != 0) {
+                                    if ($mtrl->stok > 50) {
                                         echo $mtrl->stok . ' gram';
+                                    } else if ($mtrl->stok <= 50 && $mtrl->stok != 0) {
+                                        echo '<h1 class="badge badge-warning"> <i class="fas fa-exclamation"> </i>' . ' ' . $mtrl->stok . ' gram' . '</h1>';
                                     } else {
-                                        echo ' - ';
+                                        echo '<h1 class="badge badge-danger">Kosong</h1>';
                                     }
                                     ?>
                                 </td>
-                                <td class="text-center" width=10px>
+
+                                <!-- <td class="text-center" width=10px>
                                     <a href="<?= base_url('gudang/material_edt/' . $mtrl->kd_material) ?>" class="badge badge-warning"><i class="dripicons-document-edit"></i> Edit</a>
-                                </td>
+                                </td> -->
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -153,17 +156,17 @@
                                 <td><?= $k->tipe ?></td>
                                 <td class="text-center">
                                     <?php
-                                    if ($k->stok >= 5) {
+                                    if ($k->stok > 50) {
                                         echo $k->stok . ' gram';
-                                    } else if ($k->stok <= 5 && $k->stok != 0) {
-                                        echo '<h1 class="badge badge-danger">' . $k->stok . '</h1>';
+                                    } else if ($k->stok <= 50 && $k->stok != 0) {
+                                        echo '<h1 class="badge badge-warning"> <i class="fas fa-exclamation"> </i>' . ' ' . $k->stok . ' gram' . '</h1>';
                                     } else {
                                         echo '<h1 class="badge badge-danger">Kosong</h1>';
                                     }
                                     ?>
                                 </td>
                                 <td class="text-center" width=10px>
-                                    <a href="<?= base_url('gudang/material_kasir/' . $k->kd_material) ?>" class="badge badge-success"><i class="dripicons-document-edit"></i> Tambah</a>
+                                    <a href="<?= base_url('gudang/material_kasir/' . $k->kd_material) ?>" class="badge badge-success"><i class="fas fa-plus"></i></i> Tambah</a>
                                 </td>
                             </tr>
                         <?php } ?>

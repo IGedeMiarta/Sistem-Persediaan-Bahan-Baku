@@ -52,8 +52,15 @@
                                     <li><a href="<?= base_url('owner/lap_produk') ?>"> Laporan Produk </a></li>
                                 </ul>
                             </li>
-
+                            <li class="menu-title">User</li>
+                            <li>
+                                <a href="<?= base_url('login/logout') ?>" class="waves-effect">
+                                    <i class="dripicons-exit"></i>
+                                    <span> Logout</span>
+                                </a>
+                            </li>
                         <?php } else if ($this->session->userdata('side') == 'gudang') { ?>
+                            <li class="menu-title">Main</li>
                             <li>
                                 <a href="<?= base_url('gudang') ?>" class="waves-effect">
                                     <i class="dripicons-store"></i>
@@ -78,6 +85,13 @@
                                     <li><a href="<?= base_url('gudang/lap_stok') ?>"> Laporan Stok </a></li>
                                     <!-- <li><a href="<?= base_url('gudang/lap_produk') ?>"> Laporan Produk </a></li> -->
                                 </ul>
+                            </li>
+                            <li class="menu-title">User</li>
+                            <li>
+                                <a href="<?= base_url('login/logout') ?>" class="waves-effect">
+                                    <i class="dripicons-exit"></i>
+                                    <span> Logout</span>
+                                </a>
                             </li>
                         <?php } else { ?>
                             <li class="menu-title">Main</li>
@@ -124,6 +138,13 @@
                                     <li><a href="<?= base_url('kasir/lap_stok') ?>"> Laporan Stok </a></li>
                                     <li><a href="<?= base_url('kasir/lap_produk') ?>"> Laporan Produk </a></li>
                                 </ul>
+                            </li>
+                            <li class="menu-title">User</li>
+                            <li>
+                                <a href="<?= base_url('login/logout') ?>" class="waves-effect">
+                                    <i class="dripicons-exit"></i>
+                                    <span> Logout</span>
+                                </a>
                             </li>
                         <?php } ?>
                     </ul>

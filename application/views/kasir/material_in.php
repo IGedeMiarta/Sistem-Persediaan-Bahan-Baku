@@ -29,11 +29,12 @@
         <!-- end page title -->
         <?php if ($alert['alert'] != 0) { ?>
             <div class="card">
-                <div class="card-header badge badge-danger">
+                <div class="card-header badge badge-warning">
                     <h5>Material Masuk</h5>
                 </div>
                 <div class="card-body">
-                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
                         <thead>
                             <tr>
                                 <th scope="col">No</th>

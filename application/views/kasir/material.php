@@ -57,10 +57,12 @@
                                 <td><?= $mtrl->tipe ?></td>
                                 <td class="text-center">
                                     <?php
-                                    if ($mtrl->stok != 0) {
+                                    if ($mtrl->stok > 50) {
                                         echo $mtrl->stok . ' gram';
+                                    } else if ($mtrl->stok <= 50 && $mtrl->stok != 0) {
+                                        echo '<h1 class="badge badge-warning"> <i class="fas fa-exclamation"> </i>' . ' ' . $mtrl->stok . ' gram' . '</h1>';
                                     } else {
-                                        echo ' - ';
+                                        echo '<h1 class="badge badge-danger">Kosong</h1>';
                                     }
                                     ?>
                                 </td>

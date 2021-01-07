@@ -36,11 +36,12 @@
                             <th scope="col">No</th>
                             <th scope="col">Nama pembeli </th>
                             <th scope="col">waktu</th>
-                            <th scope="col">Nama produk</th>
+                            <th scope="col">Produk</th>
                             <th scope="col">Harga</th>
-                            <th scope="col">Bayar</th>
+                            <th scope="col">Jumlah</th>
+                            <th scope="col">Total</th>
 
-
+                            <!-- <th scope="col">Bayar</th> -->
                         </tr>
                     </thead>
 
@@ -52,10 +53,12 @@
                                 <th width="10px" scope="row"><?= $no++ ?></th>
 
                                 <td><?= $s->pembeli ?></td>
-                                <td><?= $s->waktu ?></td>
+                                <td><?=
+                                        date('H:i  |  d-M-Y', strtotime($s->waktu));  ?></td>
                                 <td><?= $s->nama ?></td>
                                 <td><?= $s->harga ?></td>
-                                <td><?= $s->bayar ?></td>
+                                <td><?= $s->jumlah ?></td>
+                                <td><?= $s->total ?></td>
 
                             </tr>
                         <?php } ?>

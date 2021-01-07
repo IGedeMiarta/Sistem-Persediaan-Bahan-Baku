@@ -28,6 +28,7 @@ class Kasir extends CI_Controller
         $data['terjual'] = $this->dashboard->_sell();
         $data['teks'] = "Halaman Kasir, Sistem Persedian Bahan Baku Kedai Kopi Gayo, Kasir dapat menambahkan data produk, menginputkan data material masuk dari gudang dan dapat menambahakan data penjualan serta melakukan transaksi penjualan";
         $data['alert'] = $this->alert->notif();
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -39,7 +40,10 @@ class Kasir extends CI_Controller
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
         $data['alert'] = $this->alert->notif();
-        $data['product'] = $this->kasir_model->read('produk');
+        $data['product'] = $this->kasir_model->data_product();
+        $whare = array('detail' => 'Kasir');
+        $data['material'] = $this->kasir_model->edit($whare, 'material');
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -53,6 +57,7 @@ class Kasir extends CI_Controller
         $data['alert'] = $this->alert->notif();
         $whare = array('detail' => 'Kasir');
         $data['material'] = $this->kasir_model->edit($whare, 'material');
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -85,7 +90,7 @@ class Kasir extends CI_Controller
         $data['prod'] = $this->kasir_model->edit_product($kd_product);
         $where = array('detail' => 'Kasir');
         $data['material'] = $this->kasir_model->edit($where, 'material');
-
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -124,7 +129,7 @@ class Kasir extends CI_Controller
         $data['alert'] = $this->alert->notif();
         $data['material'] = $this->kasir_model->material_in();
         $data['masuk'] = $this->kasir_model->material_acc();
-
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -166,7 +171,7 @@ class Kasir extends CI_Controller
         $data['alert'] = $this->alert->notif();
         $whare = array('detail' => 'Kasir');
         $data['material'] = $this->kasir_model->edit($whare, 'material');
-
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -192,6 +197,7 @@ class Kasir extends CI_Controller
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
         $data['alert'] = $this->alert->notif();
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -200,23 +206,175 @@ class Kasir extends CI_Controller
     }
     public function sell_act()
     {
-        $pembeli = $this->input->post('pembeli', true);
-        $produk = $this->input->post('name', true);
-        $bayar = $this->input->post('bayar', true);
-        $waktu = date("Y-m-d H:i:s");
-        $data = [
-            'produk' => $produk,
-            'pembeli' => $pembeli,
-            'waktu' => $waktu,
-            'bayar' => $bayar
-        ];
 
-        $this->kasir_model->insert($data, 'penjualan');
-        redirect('kasir/transaksi');
+        $kd = $this->session->userdata('pegawai');
+        $data['user'] = $this->kasir_model->user($kd);
+        $data['alert'] = $this->alert->notif();
+        $pembeli = $this->input->post('pembeli', true);
+        $produk1 = $this->input->post('produk1', true);
+        $produk3 = $this->input->post('produk3', true);
+        $produk4 = $this->input->post('produk4', true);
+        $jumlah1 = $this->input->post('jumlah1', true);
+        $jumlah3 = $this->input->post('jumlah3', true);
+        $jumlah4 = $this->input->post('jumlah4', true);
+        $harga1 = $this->input->post('harga1', true);
+        $harga2 = $this->input->post('harga2', true);
+        $harga3 = $this->input->post('harga3', true);
+        $harga4 = $this->input->post('harga4', true);
+        $data['pembeli'] = $pembeli;
+        $waktu = date("Y-m-d H:i:s");
+        $data['jam'] = $waktu;
+        if ($produk1 != 'null') {
+            $produk = $this->db->query("SELECT * FROM produk WHERE nama='$produk1'")->row_array();
+            $kd = $produk['material'];
+            $kode = $produk['kd_produk'];
+            $cost = $produk['material_cost'];
+            $min = $cost * $jumlah1;
+            $material = $this->db->query("SELECT * FROM material WHERE kd_material=$kd")->row_array();
+            $stok = $material['stok'];
+            $fin = $stok - $min;
+            $data = [
+                'produk' => $kode,
+                'pembeli' => $pembeli,
+                'waktu' => $waktu,
+                'jumlah' => $jumlah1
+            ];
+            $this->kasir_model->insert($data, 'penjualan');
+
+            $whare = array('kd_material' => $kd);
+            $data2 = [
+                'stok' => $fin
+            ];
+            $this->kasir_model->update($whare, $data2, 'material');
+        };
+        $produk2 = $this->input->post('produk2', true);
+        $jumlah2 = $this->input->post('jumlah2', true);
+        if ($produk2 != 'null') {
+            $produk = $this->db->query("SELECT * FROM produk WHERE nama='$produk2'")->row_array();
+            $kd = $produk['material'];
+            $kode = $produk['kd_produk'];
+            $cost = $produk['material_cost'];
+            $min = $cost * $jumlah2;
+            $material = $this->db->query("SELECT * FROM material WHERE kd_material=$kd")->row_array();
+            $stok = $material['stok'];
+            $fin = $stok - $min;
+            $data = [
+                'produk' => $kode,
+                'pembeli' => $pembeli,
+                'waktu' => $waktu,
+                'jumlah' => $jumlah1
+            ];
+            $this->kasir_model->insert($data, 'penjualan');
+
+            $whare = array('kd_material' => $kd);
+            $data2 = [
+                'stok' => $fin
+            ];
+            $this->kasir_model->update($whare, $data2, 'material');
+        };
+        if ($produk3 != 'null') {
+            $produk = $this->db->query("SELECT * FROM produk WHERE nama='$produk3'")->row_array();
+            $kd = $produk['material'];
+            $kode = $produk['kd_produk'];
+            $cost = $produk['material_cost'];
+            $min = $cost * $jumlah3;
+            $material = $this->db->query("SELECT * FROM material WHERE kd_material=$kd")->row_array();
+            $stok = $material['stok'];
+            $fin = $stok - $min;
+            $data = [
+                'produk' => $kode,
+                'pembeli' => $pembeli,
+                'waktu' => $waktu,
+                'jumlah' => $jumlah3
+            ];
+            $this->kasir_model->insert($data, 'penjualan');
+
+            $whare = array('kd_material' => $kd);
+            $data2 = [
+                'stok' => $fin
+            ];
+            $this->kasir_model->update($whare, $data2, 'material');
+        };
+        if ($produk4 != 'null') {
+            $produk = $this->db->query("SELECT * FROM produk WHERE nama='$produk4'")->row_array();
+            $kd = $produk['material'];
+            $kode = $produk['kd_produk'];
+            $cost = $produk['material_cost'];
+            $min = $cost * $jumlah4;
+            $material = $this->db->query("SELECT * FROM material WHERE kd_material=$kd")->row_array();
+            $stok = $material['stok'];
+            $fin = $stok - $min;
+            $data = [
+                'produk' => $kode,
+                'pembeli' => $pembeli,
+                'waktu' => $waktu,
+                'jumlah' => $jumlah4
+            ];
+            $this->kasir_model->insert($data, 'penjualan');
+
+            $whare = array('kd_material' => $kd);
+            $data2 = [
+                'stok' => $fin
+            ];
+            $this->kasir_model->update($whare, $data2, 'material');
+        };
+
+        if ($produk1 != 'null') {
+            $dt1 = [
+                'produk' => $produk1,
+                'harga' => $harga1,
+                'pembeli' => $pembeli,
+                'waktu' => $waktu,
+                'jumlah' => $jumlah1
+            ];
+            $data['sel1'] = $dt1;
+        } else {
+            $data['sel1'] = 'nul';
+        };
+        if ($produk2 != 'null') {
+            $dt2 = [
+                'produk' => $produk2,
+                'harga' => $harga2,
+                'pembeli' => $pembeli,
+                'waktu' => $waktu,
+                'jumlah' => $jumlah2
+            ];
+            $data['sel2'] = $dt2;
+        } else {
+            $data['sel2'] = 'nul';
+        };
+        if ($produk3 != 'null') {
+            $data3 = [
+                'produk' => $produk3,
+                'harga' => $harga3,
+                'pembeli' => $pembeli,
+                'waktu' => $waktu,
+                'jumlah' => $jumlah3
+            ];
+            $data['sel3'] = $data3;
+        } else {
+            $data['sel3'] = 'nul';
+        };
+        if ($produk4 != 'null') {
+            $data4 = [
+                'produk' => $produk4,
+                'harga' => $harga4,
+                'pembeli' => $pembeli,
+                'waktu' => $waktu,
+                'jumlah' => $jumlah4
+            ];
+            $data['sel4'] = $data4;
+        } else {
+            $data['sel4'] = 'nul';
+        };
+        // $data['trasaksi'] = $data;
+
+        $this->load->view('kasir/nota', $data);
     }
 
     public function transaksi()
     {
+        $data['status'] = $this->alert->notifikasi();
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
         $data['alert'] = $this->alert->notif();
@@ -244,6 +402,7 @@ class Kasir extends CI_Controller
         $data['alert'] = $this->alert->notif();
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -271,6 +430,7 @@ class Kasir extends CI_Controller
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
         $data['stok'] = $this->laporan->stok_gudang();
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -285,6 +445,7 @@ class Kasir extends CI_Controller
 
     function lap_produk()
     {
+        $data['status'] = $this->alert->notifikasi();
         $data['alert'] = $this->alert->notif();
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
@@ -314,6 +475,7 @@ class Kasir extends CI_Controller
         $data['alert'] = $this->alert->notif();
         $kd = $this->session->userdata('pegawai');
         $data['user'] = $this->kasir_model->user($kd);
+        $data['status'] = $this->alert->notifikasi();
         $this->load->view('default/header');
         $this->load->view('default/sidebar', $data);
         $this->load->view('default/topbar', $data);
@@ -334,5 +496,24 @@ class Kasir extends CI_Controller
         } else {
             redirect('kasir/lap_material');
         }
+    }
+    function penjualan()
+    {
+        $data['status'] = $this->alert->notifikasi();
+        $data['alert'] = $this->alert->notif();
+        $kd = $this->session->userdata('pegawai');
+        $data['user'] = $this->kasir_model->user($kd);
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
+        $this->load->view('kasir/looping', $data);
+        $this->load->view('default/footer');
+    }
+
+    public function cari()
+    {
+        $produk = $_GET['produk'];
+        $cari = $this->kasir_model->cari_produk($produk);
+        echo json_encode($cari);
     }
 }

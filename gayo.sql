@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 03:28 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Jan 07, 2021 at 04:18 AM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -42,14 +42,16 @@ CREATE TABLE `material` (
 --
 
 INSERT INTO `material` (`kd_material`, `nama`, `varian`, `tipe`, `stok`, `detail`) VALUES
-(13, 'Gayo Premium', 'Arabica', 'Semi Washed', 101, 'Gudang'),
-(14, 'Gayo Premium', 'Arabica', 'Semi Washed', 20, 'Kasir'),
-(15, 'Gayo Specialty', 'Arabica', 'Full Washed', 100, 'Gudang'),
-(16, 'Gayo Specialty', 'Arabica', 'Full Washed', 0, 'Kasir'),
-(17, 'Gayo Peaberry', 'Arabica', 'Semi Washed', 190, 'Gudang'),
-(18, 'Gayo Peaberry', 'Arabica', 'Semi Washed', 200, 'Kasir'),
-(19, 'Kopi Atlantik', 'Robusta', 'Natural Fermented', 20, 'Gudang'),
-(20, 'Kopi Atlantik', 'Robusta', 'Natural Fermented', 0, 'Kasir');
+(23, 'Gayo Premium', 'Arabica', 'Semi Washed', 50, 'Gudang'),
+(24, 'Gayo Premium', 'Arabica', 'Semi Washed', 25, 'Kasir'),
+(25, 'Gayo Specialty', 'Arabica', 'Full Washed', 100, 'Gudang'),
+(26, 'Gayo Specialty', 'Arabica', 'Full Washed', 0, 'Kasir'),
+(27, 'Gayo Peaberry', 'Arabica', 'Semi Washed', 100, 'Gudang'),
+(28, 'Gayo Peaberry', 'Arabica', 'Semi Washed', 0, 'Kasir'),
+(29, 'Gayo Longberry', 'Arabica', 'Semi Washed', 0, 'Gudang'),
+(30, 'Gayo Longberry', 'Arabica', 'Semi Washed', 0, 'Kasir'),
+(31, 'Gayo Honey', 'Arabica', 'Honey Proses', 0, 'Gudang'),
+(32, 'Gayo Honey', 'Arabica', 'Honey Proses', 0, 'Kasir');
 
 -- --------------------------------------------------------
 
@@ -71,11 +73,7 @@ CREATE TABLE `material_keluar` (
 --
 
 INSERT INTO `material_keluar` (`kd_keluar`, `kd_material`, `waktu`, `jumlah`, `detail`, `status`) VALUES
-(3, 14, '2020-12-04 00:00:00', 10, 'kasir', 2),
-(4, 15, '2020-12-06 08:23:23', 10, 'gudang', 2),
-(5, 13, '2020-12-06 08:35:47', 10, 'gudang', 2),
-(6, 17, '2020-12-10 09:33:04', 100, 'gudang', 2),
-(7, 17, '2020-12-10 10:47:57', 10, 'gudang', 2);
+(15, 23, '2021-01-06 17:59:36', 50, 'gudang', 2);
 
 --
 -- Triggers `material_keluar`
@@ -109,17 +107,10 @@ CREATE TABLE `material_masuk` (
 --
 
 INSERT INTO `material_masuk` (`kd_masuk`, `kd_material`, `waktu`, `jumlah`, `supplier`, `detail`) VALUES
-(23, 14, '2020-12-06 00:00:00', 10, NULL, 'Kasir'),
-(24, 13, '2020-12-01 00:00:00', 11, 6, 'Gudang'),
-(25, 15, '2020-12-06 08:22:33', 100, 5, 'Gudang'),
-(26, 15, '2020-12-06 08:25:09', 10, NULL, 'Kasir'),
-(27, 14, '2020-12-06 08:40:04', 10, NULL, 'Kasir'),
-(28, 17, '2020-12-10 09:30:04', 200, 2, 'Gudang'),
-(29, 13, '2020-12-10 09:32:04', 100, 1, 'Gudang'),
-(30, 17, '2020-12-10 10:46:02', 100, 8, 'Gudang'),
-(31, 19, '2020-12-10 10:47:08', 20, 2, 'Gudang'),
-(32, 18, '2020-12-10 10:48:52', 100, NULL, 'Kasir'),
-(33, 18, '2020-12-10 10:49:03', 100, NULL, 'Kasir');
+(40, 23, '2021-01-06 17:50:39', 100, 1, 'Gudang'),
+(41, 25, '2021-01-06 17:50:58', 100, 2, 'Gudang'),
+(42, 27, '2021-01-06 17:51:27', 100, 3, 'Gudang'),
+(43, 24, '2021-01-06 18:01:53', 50, NULL, 'Kasir');
 
 --
 -- Triggers `material_masuk`
@@ -176,17 +167,17 @@ CREATE TABLE `penjualan` (
   `produk` int(11) NOT NULL,
   `pembeli` varchar(255) NOT NULL,
   `waktu` datetime NOT NULL,
-  `bayar` int(11) NOT NULL
+  `jumlah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `penjualan`
 --
 
-INSERT INTO `penjualan` (`kd_jual`, `produk`, `pembeli`, `waktu`, `bayar`) VALUES
-(2, 5, 'Prida', '2020-12-09 14:04:53', 20000),
-(3, 5, 'robet', '2020-12-10 10:49:44', 20000),
-(4, 5, 'robet', '2020-12-12 11:57:38', 20000);
+INSERT INTO `penjualan` (`kd_jual`, `produk`, `pembeli`, `waktu`, `jumlah`) VALUES
+(33, 9, 'Irfa', '2021-01-06 18:05:38', 1),
+(34, 9, 'Adlan', '2021-01-06 18:08:37', 2),
+(35, 9, 'Prida', '2021-01-06 18:17:50', 2);
 
 -- --------------------------------------------------------
 
@@ -209,10 +200,7 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`kd_produk`, `gambar`, `nama`, `deskripsi`, `material`, `material_cost`, `harga`) VALUES
-(5, '', 'Mild brown sugar', 'kopi gayo dengan tambahan brown sugar', 16, 5, 14000),
-(6, '', 'Sweet Cherry', 'kopi gayo dengan varian rasa cerry', 16, 4, 15000),
-(7, '', 'Sweet caramel', 'kopi gayo dengan ice caramel', 14, 5, 18000),
-(8, '', 'Choco brown sugar', 'kopi gayo dengan varian rasa coklat brown sugar', 14, 4, 13000);
+(9, '', 'Choco brown sugar', 'Kopi Dengan Taburan Gula Jawa dan Coklat', 24, 5, 15000);
 
 -- --------------------------------------------------------
 
@@ -351,19 +339,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `kd_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `kd_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `material_keluar`
 --
 ALTER TABLE `material_keluar`
-  MODIFY `kd_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `kd_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `material_masuk`
 --
 ALTER TABLE `material_masuk`
-  MODIFY `kd_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `kd_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -375,13 +363,13 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `kd_jual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `kd_jual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `kd_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `kd_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `retur`
