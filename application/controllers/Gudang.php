@@ -200,6 +200,49 @@ class Gudang extends CI_Controller
         redirect('gudang/material_in');
     }
 
+    public function material_in_edt($kd_material)
+    {
+        $kd = $this->session->userdata('pegawai');
+        $data['user'] = $this->gudang_model->user($kd);
+        $data['alert'] = $this->alert->notif();
+        $data['material'] = $this->gudang_model->stok_gudang();
+        $data['edit'] = $this->gudang_model->stok_gudang_edt($kd_material);
+        $data['supplier'] = $this->gudang_model->read('supplier')->result();
+        $data['status'] = $this->alert->notifikasi();
+        $this->load->view('default/header');
+        $this->load->view('default/sidebar', $data);
+        $this->load->view('default/topbar', $data);
+        $this->load->view('gudang/material_in_add', $data);
+        $this->load->view('default/footer');
+    }
+    public function material_update($kd_masuk)
+    {
+        $material = $this->input->post('material', true);
+        $waktu = date("Y-m-d H:i:s");
+        $jumlah = $this->input->post('jumlah', true);
+        $supplier = $this->input->post('supplier', true);
+
+        $data = [
+            'kd_material' => $material,
+            'waktu' => $waktu,
+            'jumlah' => $jumlah,
+            'supplier' => $supplier,
+            'detail' => 'Gudang'
+        ];
+        $where = array('kd_masuk' => $kd_masuk);
+
+        $this->gudang_model->update($where, $data, 'material_masuk');
+        redirect('gudang/material_in');
+    }
+
+    public function material_in_del($kd_material)
+    {
+        $where = array('kd_material' => $kd_material);
+        $this->gudang_model->delete($where, 'material_masuk');
+
+        redirect('gudang/material_in');
+    }
+
     public function material_out()
     {
         $data['alert'] = $this->alert->notif();

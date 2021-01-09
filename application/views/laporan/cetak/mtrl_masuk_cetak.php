@@ -156,7 +156,7 @@
             Yogyakarta, <?php echo date('d M Y '); ?>
             <br><br>
             <br><br>
-            <?php echo $this->session->userdata('nama'); ?>
+            <?php echo $user['nama'] ?>
         </font>
 
     </p>

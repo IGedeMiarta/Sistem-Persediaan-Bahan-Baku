@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2021 at 04:18 AM
+-- Generation Time: Jan 09, 2021 at 08:50 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -32,26 +32,10 @@ CREATE TABLE `material` (
   `kd_material` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `varian` enum('Arabica','Robusta') NOT NULL,
-  `tipe` enum('Semi Washed','Full Washed','Natural Fermented','Honey Proses','Wine Proses') NOT NULL,
+  `tipe` enum('Semi Washed','Full Washed','Natural Fermented','Honey Proses','Wine Proses','Wine Fermented') NOT NULL,
   `stok` int(11) NOT NULL,
   `detail` enum('Kasir','Gudang') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `material`
---
-
-INSERT INTO `material` (`kd_material`, `nama`, `varian`, `tipe`, `stok`, `detail`) VALUES
-(23, 'Gayo Premium', 'Arabica', 'Semi Washed', 50, 'Gudang'),
-(24, 'Gayo Premium', 'Arabica', 'Semi Washed', 25, 'Kasir'),
-(25, 'Gayo Specialty', 'Arabica', 'Full Washed', 100, 'Gudang'),
-(26, 'Gayo Specialty', 'Arabica', 'Full Washed', 0, 'Kasir'),
-(27, 'Gayo Peaberry', 'Arabica', 'Semi Washed', 100, 'Gudang'),
-(28, 'Gayo Peaberry', 'Arabica', 'Semi Washed', 0, 'Kasir'),
-(29, 'Gayo Longberry', 'Arabica', 'Semi Washed', 0, 'Gudang'),
-(30, 'Gayo Longberry', 'Arabica', 'Semi Washed', 0, 'Kasir'),
-(31, 'Gayo Honey', 'Arabica', 'Honey Proses', 0, 'Gudang'),
-(32, 'Gayo Honey', 'Arabica', 'Honey Proses', 0, 'Kasir');
 
 -- --------------------------------------------------------
 
@@ -67,13 +51,6 @@ CREATE TABLE `material_keluar` (
   `detail` enum('kasir','gudang','','') NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `material_keluar`
---
-
-INSERT INTO `material_keluar` (`kd_keluar`, `kd_material`, `waktu`, `jumlah`, `detail`, `status`) VALUES
-(15, 23, '2021-01-06 17:59:36', 50, 'gudang', 2);
 
 --
 -- Triggers `material_keluar`
@@ -103,16 +80,6 @@ CREATE TABLE `material_masuk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `material_masuk`
---
-
-INSERT INTO `material_masuk` (`kd_masuk`, `kd_material`, `waktu`, `jumlah`, `supplier`, `detail`) VALUES
-(40, 23, '2021-01-06 17:50:39', 100, 1, 'Gudang'),
-(41, 25, '2021-01-06 17:50:58', 100, 2, 'Gudang'),
-(42, 27, '2021-01-06 17:51:27', 100, 3, 'Gudang'),
-(43, 24, '2021-01-06 18:01:53', 50, NULL, 'Kasir');
-
---
 -- Triggers `material_masuk`
 --
 DELIMITER $$
@@ -126,6 +93,20 @@ DELIMITER $$
 CREATE TRIGGER `kasir_masuk` BEFORE INSERT ON `material_masuk` FOR EACH ROW BEGIN 
 	UPDATE material SET stok = stok + NEW.jumlah
 	WHERE NEW.kd_material=material.kd_material AND NEW.detail='Kasir';
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `mtr_in_del` AFTER DELETE ON `material_masuk` FOR EACH ROW BEGIN 
+	UPDATE material SET stok = stok - OLD.jumlah
+	WHERE OLD.kd_material=material.kd_material AND OLD.detail='Gudang';
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `mtrl_update` AFTER UPDATE ON `material_masuk` FOR EACH ROW BEGIN 
+	UPDATE material SET stok = (stok - OLD.jumlah)+NEW.jumlah
+	WHERE NEW.kd_material=material.kd_material AND NEW.detail='Gudang';
 END
 $$
 DELIMITER ;
@@ -170,15 +151,6 @@ CREATE TABLE `penjualan` (
   `jumlah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `penjualan`
---
-
-INSERT INTO `penjualan` (`kd_jual`, `produk`, `pembeli`, `waktu`, `jumlah`) VALUES
-(33, 9, 'Irfa', '2021-01-06 18:05:38', 1),
-(34, 9, 'Adlan', '2021-01-06 18:08:37', 2),
-(35, 9, 'Prida', '2021-01-06 18:17:50', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -194,13 +166,6 @@ CREATE TABLE `produk` (
   `material_cost` int(11) NOT NULL,
   `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `produk`
---
-
-INSERT INTO `produk` (`kd_produk`, `gambar`, `nama`, `deskripsi`, `material`, `material_cost`, `harga`) VALUES
-(9, '', 'Choco brown sugar', 'Kopi Dengan Taburan Gula Jawa dan Coklat', 24, 5, 15000);
 
 -- --------------------------------------------------------
 
@@ -339,19 +304,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `kd_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `kd_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `material_keluar`
 --
 ALTER TABLE `material_keluar`
-  MODIFY `kd_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `kd_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `material_masuk`
 --
 ALTER TABLE `material_masuk`
-  MODIFY `kd_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `kd_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -363,13 +328,13 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `kd_jual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `kd_jual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `kd_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `kd_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `retur`

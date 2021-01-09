@@ -7,7 +7,7 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Tambah Material Masuk</h4>
+                            <h4 class="page-title m-0">Edit Material Masuk</h4>
                         </div>
 
                         <!-- end col -->
@@ -21,13 +21,13 @@
 
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="<?= base_url('gudang/material_in_act') ?>">
+                <form method="POST" action="<?= base_url('gudang/material_update/') . $edit['kd_masuk'] ?>">
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">Nama Material</label>
                         <div class="col-sm-10">
                             <select class="form-control" name="material">
-                                <option selected>-- Pilih</option>
+                                <option value="<?= $edit['kd_material'] ?>" selected><?= $edit['nama'] ?></option>
                                 <?php foreach ($material as $mtrl) { ?>
                                     <option value="<?= $mtrl->kd_material; ?>"><?= $mtrl->nama; ?></option>
                                 <?php } ?>
@@ -37,7 +37,7 @@
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">Jumlah</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Jumlah Material Masuk / gram" value="<?= set_value('jumlah'); ?>">
+                            <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Jumlah Material Masuk / gram" value="<?= $edit['jumlah']; ?>">
                         </div>
                     </div>
 
@@ -45,7 +45,7 @@
                         <label for="example-text-input" class="col-sm-2 col-form-label">Nama Supplier</label>
                         <div class="col-sm-10">
                             <select class="form-control" name="supplier">
-                                <option selected>-- Pilih</option>
+                                <option value="<?= $edit['id_sup'] ?>" selected><?= $edit['nama_sup'] ?></option>
                                 <?php foreach ($supplier as $s) { ?>
                                     <option value="<?= $s->id_sup; ?>"><?= $s->nama_sup; ?></option>
                                 <?php } ?>

@@ -14,6 +14,9 @@ class Report extends CI_Controller
     }
     function mtrl_print()
     {
+        $kd = $this->session->userdata('pegawai');
+        $data['user'] = $this->laporan->user($kd);
+
         if (isset($_GET['tanggal_mulai']) && isset($_GET['tanggal_sampai'])) {
             $mulai = $this->input->get('tanggal_mulai');
             $sampai = $this->input->get('tanggal_sampai');

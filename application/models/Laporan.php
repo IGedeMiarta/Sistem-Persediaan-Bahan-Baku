@@ -26,4 +26,9 @@ class Laporan extends CI_Model
     {
         return $this->db->query("SELECT * FROM penjualan,produk WHERE penjualan.produk=produk.kd_produk AND date(waktu) >='$mulai' AND date(waktu) <= '$sampai'")->result();
     }
+
+    function user($kd)
+    {
+        return $this->db->query("SELECT * FROM user JOIN pegawai ON user.id_pegawai=pegawai.id_pegawai WHERE user.id_pegawai=$kd")->row_array();
+    }
 }

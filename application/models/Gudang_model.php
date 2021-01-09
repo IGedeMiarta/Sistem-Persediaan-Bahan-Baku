@@ -8,6 +8,11 @@ class Gudang_model extends CI_Model
         $query = $this->db->query("SELECT * FROM material WHERE detail='Gudang' ORDER BY kd_material DESC");
         return $query->result();
     }
+    function stok_gudang_edt($kd_material)
+    {
+        $query = $this->db->query("SELECT * FROM material JOIN material_masuk JOIN supplier ON material_masuk.kd_material=material.kd_material AND material_masuk.supplier=supplier.id_sup WHERE material.detail='Gudang' AND material_masuk.kd_material=$kd_material");
+        return $query->row_array();
+    }
     function stok_kasir()
     {
         $query = $this->db->query("SELECT * FROM material WHERE detail='Kasir'  ORDER BY kd_material DESC");

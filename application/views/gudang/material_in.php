@@ -106,8 +106,8 @@
                                     <a href="" class="badge badge-info"><i class="wy-text-info"></i>Detail</a>
                                 </td> -->
                                 <td>
-                                    <a href="<?= base_url('owner/pegawai_edt/' . $mtrl->kd_material) ?>" class="badge badge-warning"><i class="dripicons-document-edit"></i> Edit</a>
-                                    <a href="<?= base_url('owner/pegawai_del/' . $mtrl->kd_material) ?>" class="badge badge-danger"><i class="dripicons-trash"></i> Hapus</a>
+                                    <a href="<?= base_url('gudang/material_in_edt/' . $mtrl->kd_material) ?>" class="badge badge-warning"><i class="dripicons-document-edit"></i> Edit</a>
+                                    <a href="<?= base_url('gudang/material_in_del/' . $mtrl->kd_material) ?>" class="badge badge-danger"><i class="dripicons-trash"></i> Hapus</a>
                                 </td>
                             </tr>
                         <?php } ?>
