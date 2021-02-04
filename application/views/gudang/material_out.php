@@ -22,6 +22,8 @@
             </div>
         </div>
         <!-- end page title -->
+        <?php echo $this->session->flashdata('messege'); ?>
+
         <div class="card">
             <div class="card-header badge badge-dark">
                 <h5>Tambah Material Keluar</h5>
@@ -42,7 +44,7 @@
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">Tersedia</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="stok" name="jumlah" placeholder="Material Tersedia / gram" readonly>
+                            <input type="number" class="form-control" id="stok" name="stok" placeholder="Material Tersedia / gram" readonly>
                         </div>
                     </div>
                     <div class="form-group row">

@@ -106,6 +106,7 @@ class Gudang extends CI_Controller
             ];
             $this->gudang_model->insert($data, 'material');
             $this->gudang_model->insert($data2, 'material');
+            $this->session->set_flashdata('messege', '<script>alert("Data Berhasil Ditambah!");</script>');
             redirect('gudang/material');
         }
     }
@@ -197,6 +198,7 @@ class Gudang extends CI_Controller
             'detail' => 'Gudang'
         ];
         $this->gudang_model->insert($data, 'material_masuk');
+        $this->session->set_flashdata('messege', '<script>alert("Data Berhasil Ditambah!");</script>');
         redirect('gudang/material_in');
     }
 
@@ -232,6 +234,7 @@ class Gudang extends CI_Controller
         $where = array('kd_masuk' => $kd_masuk);
 
         $this->gudang_model->update($where, $data, 'material_masuk');
+        $this->session->set_flashdata('messege', '<script>alert("Data Berhasil Diubah!");</script>');
         redirect('gudang/material_in');
     }
 
@@ -277,16 +280,24 @@ class Gudang extends CI_Controller
         $material = $this->input->post('material', true);
         $waktu = date("Y-m-d H:i:s");
         $jumlah = $this->input->post('jumlah', true);
+        $stok = $this->input->post('stok', true);
 
-        $data = [
-            'kd_material' => $material,
-            'waktu' => $waktu,
-            'jumlah' => $jumlah,
-            'detail' => 'Gudang',
-            'status' => 1
-        ];
-        $this->gudang_model->insert($data, 'material_keluar');
-        redirect('gudang/material_out');
+        if ($stok >= $jumlah) {
+            $data = [
+                'kd_material' => $material,
+                'waktu' => $waktu,
+                'jumlah' => $jumlah,
+                'detail' => 'Gudang',
+                'status' => 1
+            ];
+            $this->gudang_model->insert($data, 'material_keluar');
+
+            $this->session->set_flashdata('messege', '<script>alert("Data Berhasil Ditambah!");</script>');
+            redirect('gudang/material_out');
+        } else {
+            $this->session->set_flashdata('messege', '<script>alert("Jumlah Diinputkan melebihi Stok!");</script>');
+            redirect('gudang/material_out');
+        }
     }
     // =============================================================================================
 

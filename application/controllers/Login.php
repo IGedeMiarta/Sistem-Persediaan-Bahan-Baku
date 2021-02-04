@@ -112,7 +112,7 @@ class Login extends CI_Controller
         $this->session->unset_userdata('status');
 
 
-        $this->session->set_flashdata('messege', '<div class="alert alert-danger" role="alert">Anda Sudah Logout</div>');
+        $this->session->set_flashdata('messege', '<script>alert("Anda Berhasil Logout!");</script>');
         redirect('login');
     }
 }

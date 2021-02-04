@@ -80,6 +80,8 @@ class Kasir extends CI_Controller
         ];
 
         $this->kasir_model->insert($data, 'produk');
+        $this->session->set_flashdata('messege', '<script>alert("Data Berhasil Ditambah!");</script>');
+
         redirect('kasir/product');
     }
     public function product_edt($kd_product)
@@ -114,6 +116,7 @@ class Kasir extends CI_Controller
         ];
 
         $this->kasir_model->update($whare, $data, 'produk');
+        $this->session->set_flashdata('messege', '<script>alert("Data Berhasil Diubah!");</script>');
         redirect('kasir/product');
     }
     public function product_del($kd_produk)

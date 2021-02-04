@@ -27,7 +27,7 @@
                     <form class="login100-form validate-form" method="post" action="<?= base_url('login'); ?>">
                         <input class=" form-control" type="text" name="username" placeholder="Username" required>
                         <input class="form-control" type="password" name="password" placeholder="Password" required>
-                        <input type="checkbox" id="chk1"><label for="chk1">Remmeber me</label>
+                        <input type="checkbox" id="chk1"><label for="chk1">Remeber me</label>
                         <div class="form-button">
                             <button id="submit" type="submit" class="ibtn">Login</button>
                         </div>

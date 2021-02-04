@@ -8,10 +8,7 @@ class Report extends CI_Controller
         parent::__construct();
         $this->load->model('laporan');
     }
-    function index()
-    {
-        echo "hello";
-    }
+
     function mtrl_print()
     {
         $kd = $this->session->userdata('pegawai');
