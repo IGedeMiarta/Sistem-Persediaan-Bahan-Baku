@@ -122,7 +122,9 @@ class Kasir extends CI_Controller
     public function product_del($kd_produk)
     {
         $where = array('kd_produk' => $kd_produk);
+        $this->kasir_model->delete(['produk' => $kd_produk], 'penjualan');
         $this->kasir_model->delete($where, 'produk');
+        $this->session->set_flashdata('messege', '<script>alert("Data Berhasil Dihapus!");</script>');
         redirect('kasir/product');
     }
     public function material_in()
